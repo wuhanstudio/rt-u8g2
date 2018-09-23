@@ -17,7 +17,7 @@ LOCAL_CCFLAGS = ''
 if rtconfig.CROSS_TOOL == 'gcc':
     LOCAL_CCFLAGS += ' -std=c99'
 elif rtconfig.CROSS_TOOL == 'keil':
-    LOCAL_CCFLAGS += ' --c99 --gnu'
+    LOCAL_CCFLAGS += '-O2 --c99 --gnu'
 
 group = DefineGroup('U8G2', src, depend = ['PKG_USING_U8G2'], CPPPATH = path, LOCAL_CCFLAGS = LOCAL_CCFLAGS)
 
