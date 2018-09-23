@@ -1,4 +1,5 @@
-# rt-u8g2
+![u8g2 logo](u8g2_logo.png)
+# rt-u8g2 examples
 
 ## 1、介绍
 
@@ -19,7 +20,7 @@
 
 ### 1.2 许可证
 
-> MIT。
+> MIT
 
 ### 1.3 依赖
 
@@ -42,17 +43,18 @@ RT-Thread online packages
 
 ## 3、使用 U8G2
 
-> 说明： 如果使用的 bsp 是 STM32F10x 直接编译即可，其他平台需要修改 HAL 层代码。 
+> 说明： 如果使用的 bsp 是 STM32F10x 直接编译即可，参照[`/examples`](/examples/README.md)，其他平台请参照 [移植说明](port/README.md) 
 
 在打开 u8g2 package 后，当进行 bsp 编译时，它会被加入到 bsp 工程中进行编译。
 
 * 移植请参照 [`/port`](/port) 下
 * 完整的 API 手册可以访问这个[链接](https://github.com/olikraus/u8g2/wiki/u8g2reference)
-* 更多文档位于 [`/docs`](/docs) 下，使用前 **务必查看**
 
 ## 4、注意事项
 
 > 说明：默认使用 STM32F10x，example 里使用的是 I2C 接口的 ssd1306。
+
+如果要使用到其他平台，请参照 [移植说明](port/README.md)
 
 ## 5、感谢
 

@@ -4,32 +4,32 @@ void stm32_set_sda(void *data, rt_int32_t state)
 {
     if(state == 1)
         GPIO_SetBits(I2C1_GPIO , I2C1_GPIO_SDA);   //GPIOB->BSRRL = I2C1_GPIO_SDA
-				// rt_pin_write(I2C1_GPIO_SDA,PIN_HIGH);
+		// rt_pin_write(I2C1_GPIO_SDA,PIN_HIGH);
     else if(state == 0)
         GPIO_ResetBits(I2C1_GPIO , I2C1_GPIO_SDA); //GPIOB->BSRRH = I2C1_GPIO_SDA
-				// rt_pin_write(I2C1_GPIO_SDA,PIN_LOW);
+		// rt_pin_write(I2C1_GPIO_SDA,PIN_LOW);
 }
 
 void stm32_set_scl(void *data, rt_int32_t state)
 {
     if(state == 1)
-				GPIO_SetBits(I2C1_GPIO , I2C1_GPIO_SCL);   //GPIOB->BSRRL = I2C1_GPIO_SCL
-				// rt_pin_write(I2C1_GPIO_SCL,PIN_HIGH);
+		GPIO_SetBits(I2C1_GPIO , I2C1_GPIO_SCL);   //GPIOB->BSRRL = I2C1_GPIO_SCL
+		// rt_pin_write(I2C1_GPIO_SCL,PIN_HIGH);
     else if(state == 0)
         GPIO_ResetBits(I2C1_GPIO , I2C1_GPIO_SCL); //GPIOB->BSRRH = I2C1_GPIO_SCL
-				// rt_pin_write(I2C1_GPIO_SCL,PIN_LOW);
+		// rt_pin_write(I2C1_GPIO_SCL,PIN_LOW);
 }
 
 rt_int32_t stm32_get_sda(void *data)
 {
     return (rt_int32_t)GPIO_ReadInputDataBit(I2C1_GPIO , I2C1_GPIO_SDA);//return(GPIOB->IDR  & I2C1_GPIO_SDA)
-		// return rt_pin_read(I2C1_GPIO_SDA);
+	// return rt_pin_read(I2C1_GPIO_SDA);
 }
 
 rt_int32_t stm32_get_scl(void *data)
 {
     return (rt_int32_t)GPIO_ReadInputDataBit(I2C1_GPIO , I2C1_GPIO_SCL);//return(GPIOB->IDR  & I2C1_GPIO_SCL)
-		// return rt_pin_read(I2C1_GPIO_SCL);
+	// return rt_pin_read(I2C1_GPIO_SCL);
 }
 
 void stm32_udelay(rt_uint32_t us)
@@ -93,4 +93,5 @@ int rt_hw_i2c_init(void)
         
     return 0;
 }
-INIT_BOARD_EXPORT(rt_hw_i2c_init);	//rt_hw_i2c_init will be called in rt_components_board_init()
+INIT_BOARD_EXPORT(rt_hw_i2c_init);	
+//rt_hw_i2c_init will be called in rt_components_board_init()
