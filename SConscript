@@ -1,16 +1,24 @@
-# RT-Thread building script for bridge
-
-import os
 from building import *
+import rtconfig
 
-cwd = GetCurrentDir()
-objs = []
-list = os.listdir(cwd)
+# get current directory
+cwd     = GetCurrentDir()
+# The set of source files associated with this SConscript file.
+src     = Glob('inc/*.h')
+src     = Glob('src/*.c')
+src    += Glob('port/*.c')
+src    += Glob('examples/*.c')
 
-if GetDepend('PKG_USING_HELLO'):
-    for d in list:
-        path = os.path.join(cwd, d)
-        if os.path.isfile(os.path.join(path, 'SConscript')):
-            objs = objs + SConscript(os.path.join(d, 'SConscript'))
+path    = [cwd + '/']
+path   += [cwd + '/port']
 
-Return('objs')
+LOCAL_CCFLAGS = ''
+
+if rtconfig.CROSS_TOOL == 'gcc':
+    LOCAL_CCFLAGS += ' -std=c99'
+elif rtconfig.CROSS_TOOL == 'keil':
+    LOCAL_CCFLAGS += ' --c99 --gnu'
+
+group = DefineGroup('U8G2', src, depend = ['PKG_USING_U8G2'], CPPPATH = path, LOCAL_CCFLAGS = LOCAL_CCFLAGS)
+
+Return('group')

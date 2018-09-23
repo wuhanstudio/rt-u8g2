@@ -3,7 +3,7 @@
 
 #include <rtthread.h>
 #include <rtdevice.h>
-#include <u8g2.h>
+#include <src/u8g2.h>
 
 #define I2C_DEVICE_NAME "i2c1"
 
