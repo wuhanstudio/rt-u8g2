@@ -20,7 +20,23 @@
 
 ### 1.2 许可证
 
-> MIT
+- The U8g2lib code (http://code.google.com/p/u8g2/) is licensed under the terms of 
+the new-bsd license (two-clause bsd license).  See also:  
+
+	> http://www.opensource.org/licenses/bsd-license.php  
+
+- The repository and optionally the releases contain icons, which are
+derived from the WPZOOM Developer Icon Set. WPZOOM Developer Icon Set by WPZOOM is licensed under a Creative Commons 
+Attribution-ShareAlike 3.0 Unported License.  
+
+	> http://www.wpzoom.com/wpzoom/new-freebie-wpzoom-developer-icon-set-154-free-icons/ 
+ 
+- Fonts are licensed under different conditions.for detailed information on the licensing conditions for each font.
+ 
+	> https://github.com/olikraus/u8g2/wiki/fntgrp
+
+
+Check full LICENCE **[here](LICENSE)**.
 
 ### 1.3 依赖
 
