@@ -4,7 +4,19 @@
 
 ## 1. I2C 初始化
 
-完成这部分的移植上电后 list_device 应当能看到 i2c1 总线。
+注意：这是在 STM32 上使用 GPIO 模拟 I2C 总线的操作，在 msh 里 
+
+	$ list_device
+
+**如果能看到 I2C 设备，就不需要做这部分移植了。**
+
+不过需要在 [ports/u8g_port.c](ports/u8g_port.c) 里定义使用的是哪条 I2C 总线，具体使用可以参照 examples 。
+
+	#define I2C_DEVICE_NAME "i2c1"
+
+----
+
+GPIO 模拟 I2C 总线部分：
 
 	void stm32_set_sda(void *data, rt_int32_t state)  
 
