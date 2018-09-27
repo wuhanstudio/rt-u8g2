@@ -3,8 +3,8 @@
 
 ## 使用说明
 
-- 移植请参照 : [移植方法](port/README.md)
-- 例程请参照 : [ssd1306 液晶 与 YL-40 模块](examples/README.md)
+- 移植请参照 : [移植方法](../port/README.md)
+- 例程请参照 : [ssd1306 液晶 与 YL-40 模块](../examples/README.md)
 - API 请参照 : [U8g2 Reference](https://github.com/olikraus/u8g2/wiki/u8g2reference)
 
 
