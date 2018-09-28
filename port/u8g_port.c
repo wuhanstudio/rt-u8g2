@@ -9,15 +9,15 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
   switch(msg)
   {
 	case U8X8_MSG_DELAY_NANO:			// delay arg_int * 1 nano second
-		__nop();
+		__asm__ volatile("nop"); 
 		break;    
 	case U8X8_MSG_DELAY_100NANO:		// delay arg_int * 100 nano seconds
-		__nop();
+		__asm__ volatile("nop"); 
 		break;
 	case U8X8_MSG_DELAY_10MICRO:		// delay arg_int * 10 micro seconds
 		for (uint16_t n = 0; n < 320; n++)
 		{
-			__nop();
+			__asm__ volatile("nop"); 
 		}
 		break;
 	case U8X8_MSG_DELAY_MILLI:			// delay arg_int * 1 milli second
@@ -36,7 +36,6 @@ uint8_t u8x8_byte_rt_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 	static uint8_t buffer[32];		
 	static uint8_t buf_idx;
 	uint8_t *data;
-
 	
 	rt_uint8_t t = 0;	
 	switch(msg)
