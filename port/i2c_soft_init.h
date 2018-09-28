@@ -1,7 +1,6 @@
 #ifndef __I2C_SOFT_INIT_H__
 #define __I2C_SOFT_INIT_H__
 
-#include <stm32f10x.h>
 #include <rtthread.h>
 #include <rtdevice.h>
 #include <drivers/i2c-bit-ops.h>
