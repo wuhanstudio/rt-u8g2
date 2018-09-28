@@ -34,8 +34,8 @@ uint8_t u8x8_byte_rt_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 	/* u8g2/u8x8 will never send more than 32 bytes between START_TRANSFER and END_TRANSFER */
 	struct rt_i2c_msg msgs;
 	static uint8_t buffer[32];		
-  	static uint8_t buf_idx;
-  	uint8_t *data;
+	static uint8_t buf_idx;
+	uint8_t *data;
 
 	
 	rt_uint8_t t = 0;	
@@ -43,15 +43,20 @@ uint8_t u8x8_byte_rt_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 	{
 		case U8X8_MSG_BYTE_SEND:
 			data = (uint8_t *)arg_ptr;      
-	      	while( arg_int > 0 )
-	      	{
+			while( arg_int > 0 )
+			{
 				buffer[buf_idx++] = *data;
 				data++;
 				arg_int--;
-	      	}
+			}
 			break;
 		case U8X8_MSG_BYTE_INIT:
 			i2c_bus = rt_i2c_bus_device_find(I2C_DEVICE_NAME);
+			if (i2c_bus == RT_NULL)
+			{
+				// rt_kprintf("Failed to find bus\n");
+				return 0;
+			}
 			break;
 		case U8X8_MSG_BYTE_SET_DC:
 			break;
@@ -61,8 +66,13 @@ uint8_t u8x8_byte_rt_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 			buf_idx = 0;
 			break;
 		case U8X8_MSG_BYTE_END_TRANSFER:
+			if (i2c_bus == RT_NULL)
+			{
+				rt_kprintf("Failed to find bus\n");
+				return 0;
+			}
 			// I2C Data Transfer
-		  	msgs.addr = u8x8_GetI2CAddress(u8x8)>>1;
+			msgs.addr = u8x8_GetI2CAddress(u8x8)>>1;
 			msgs.flags = RT_I2C_WR;
 			msgs.buf = buffer;
 			msgs.len = buf_idx;
@@ -70,6 +80,10 @@ uint8_t u8x8_byte_rt_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 			{
 				t++;
 			};
+			if(t >= MAX_RETRY)
+			{
+				return 0;
+			}
 			break;
 		default:
 			return 0;
