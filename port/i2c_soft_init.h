@@ -5,8 +5,8 @@
 #include <rtdevice.h>
 #include <drivers/i2c-bit-ops.h>
 
-#define RCC_I2C 				RCC_APB2Periph_GPIOB
-#define I2C1_GPIO 			GPIOB
+#define RCC_I2C 		RCC_APB2Periph_GPIOB
+#define I2C1_GPIO 		GPIOB
 #define I2C1_GPIO_SDA 	GPIO_Pin_7
 #define I2C1_GPIO_SCL 	GPIO_Pin_6
 
