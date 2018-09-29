@@ -1,11 +1,10 @@
 #include <rthw.h>
 #include <rtthread.h>
 #include <rtdevice.h>
-#include <u8g_port.h>
+#include <u8g2_port.h>
 
 static void ssd1306_example(int argc,char *argv[])
 {
-	
 	u8g2_t u8g2;
 	u8g2_Setup_ssd1306_i2c_128x64_noname_f( &u8g2, U8G2_R0, u8x8_byte_rt_hw_i2c, u8x8_rt_gpio_and_delay);
 	

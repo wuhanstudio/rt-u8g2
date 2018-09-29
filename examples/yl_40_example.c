@@ -2,7 +2,7 @@
 #include <rtthread.h>
 #include <rtdevice.h>
 #include <stdlib.h>
-#include <u8g_port.h>
+#include <u8g2_port.h>
 
 static void yl_40_example(int argc,char *argv[])
 {
@@ -22,7 +22,7 @@ static void yl_40_example(int argc,char *argv[])
 		buffer[0] = 0xff;
 		if(argc == 2)
 		{
-			buffer[1] = atoi(argv[1]);		
+			buffer[1] = atoi(argv[1]);
 		}
 		else if(argc == 3)
 		{
