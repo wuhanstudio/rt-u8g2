@@ -7,7 +7,12 @@ cwd     = GetCurrentDir()
 src     = Glob('inc/*.h')
 src     = Glob('src/*.c')
 src    += Glob('port/*.c')
-src    += Glob('examples/*.c')
+
+if GetDepend('U8G2_USING_I2C_SSD1306'):
+	src    += Glob('examples/ssd1306_example.c')
+
+if GetDepend('U8G2_USING_I2C_YL40'):
+	src    += Glob('examples/yl_40_example.c')
 
 path    = [cwd + '/']
 path   += [cwd + '/port']
