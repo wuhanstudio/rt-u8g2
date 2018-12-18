@@ -13,5 +13,5 @@
 [●] Hardware I2C  
 [&nbsp;&nbsp;] Hardware SPI  
 [●] Software I2C  
-[&nbsp;&nbsp;] Software SPI  
+[●] Software SPI  
 [&nbsp;&nbsp;] GPIO & Delay  
