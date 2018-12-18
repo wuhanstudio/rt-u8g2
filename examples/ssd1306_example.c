@@ -3,7 +3,7 @@
 #include <rtdevice.h>
 #include <u8g2_port.h>
 
-static void ssd1306_example(int argc,char *argv[])
+static void ssd1306_example_i2c(int argc,char *argv[])
 {
 	u8g2_t u8g2;
 	u8g2_Setup_ssd1306_i2c_128x64_noname_f( &u8g2, U8G2_R0, u8x8_byte_rt_hw_i2c, u8x8_rt_gpio_and_delay);
@@ -21,4 +21,25 @@ static void ssd1306_example(int argc,char *argv[])
 	u8g2_DrawGlyph(&u8g2, 112, 56, 0x2603 );
 	u8g2_SendBuffer(&u8g2);
 }
-MSH_CMD_EXPORT(ssd1306_example, i2c ssd1306 sample);
+MSH_CMD_EXPORT(ssd1306_example_i2c, i2c ssd1306 sample);
+
+static void ssd1306_example_4wire_sw_spi(int argc,char *argv[])
+{
+	u8g2_t u8g2;
+
+	u8g2_Setup_ssd1306_128x64_noname_f( &u8g2, U8G2_R0, u8x8_byte_4wire_sw_spi, u8x8_rt_gpio_and_delay);
+
+	u8g2_InitDisplay(&u8g2);
+	u8g2_SetPowerSave(&u8g2, 0);
+				
+	/* full buffer example, setup procedure ends in _f */
+	u8g2_ClearBuffer(&u8g2);
+	u8g2_SetFont(&u8g2, u8g2_font_baby_tf);
+	u8g2_DrawStr(&u8g2, 1, 18, "U8g2 on RT-Thread");
+	u8g2_SendBuffer(&u8g2);
+
+	u8g2_SetFont(&u8g2, u8g2_font_unifont_t_symbols);
+	u8g2_DrawGlyph(&u8g2, 112, 56, 0x2603 );
+	u8g2_SendBuffer(&u8g2);
+}
+MSH_CMD_EXPORT(ssd1306_example_4wire_sw_spi, sw 4wire spi ssd1306 sample);
