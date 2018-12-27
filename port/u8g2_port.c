@@ -12,13 +12,12 @@ struct stm32_hw_spi_cs
 };
 static struct stm32_hw_spi_cs spi_cs; 
 
-static int rt_hw_ssd1351_config(uint8_t spi_mode, uint32_t max_hz)
+static int rt_hw_ssd1351_config(uint8_t spi_mode, uint32_t max_hz, uint8_t cs_pin )
 {
 	rt_err_t res;
 	
-	
 	// Attach Device
-	spi_cs.pin = 14;
+	spi_cs.pin = cs_pin;
 	rt_pin_mode(spi_cs.pin, PIN_MODE_OUTPUT);
 	res = rt_spi_bus_attach_device(&spi_dev_ssd1306, SPI_SSD1306_DEVICE_NAME, SPI_BUS_NAME, (void*)&spi_cs);
 	if (res != RT_EOK)
@@ -215,16 +214,13 @@ uint8_t u8x8_byte_rt_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
         case U8X8_MSG_BYTE_SEND:
             data = (uint8_t *)arg_ptr;
 				
-            // printf("Buffering Data %d \n", arg_int);
             while( arg_int > 0) 
             {
-                // printf("%.2X ", (uint8_t)*data);
                 buffer_tx[buf_idx++] = (uint8_t)*data;
 							  rt_spi_send(&spi_dev_ssd1306, (uint8_t*)data, 1);
                 data++;
                 arg_int--;
             }  
-            // printf("\n");
             break;
 
         case U8X8_MSG_BYTE_INIT:
@@ -234,9 +230,8 @@ uint8_t u8x8_byte_rt_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
             /*   2: clock active low, data out on rising edge */
             /*   3: clock active low, data out on falling edge */
 				    u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);		
-			    	rt_hw_ssd1351_config(u8x8->display_info->spi_mode, u8x8->display_info->sck_clock_hz);
-				    
-            // printf("SPI Device Mode Set\n");
+			    	rt_hw_ssd1351_config(u8x8->display_info->spi_mode, u8x8->display_info->sck_clock_hz, u8x8->pins[U8X8_PIN_CS]);
+
             break;
 
         case U8X8_MSG_BYTE_SET_DC:
@@ -251,14 +246,11 @@ uint8_t u8x8_byte_rt_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
         case U8X8_MSG_BYTE_END_TRANSFER:      
             memset( tx, 0, ARRAY_SIZE(tx)*sizeof(uint8_t) );
             memset( rx, 0, ARRAY_SIZE(rx)*sizeof(uint8_t) );
-  
-            // printf("SPI Data Sending %d\n", buf_idx);            
+             
             for (i = 0; i < buf_idx; ++i)
             {
-                // printf("%.2X ", buffer_tx[i]);
                 tx[i] = buffer_tx[i];
             }
-            // printf("\n");
 						
 						u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->pre_chip_disable_wait_ns, NULL);
             u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
