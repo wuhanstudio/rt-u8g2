@@ -11,7 +11,7 @@
 ## Todo list
 
 [●] Hardware I2C  
-[&nbsp;&nbsp;] Hardware SPI  
+[●] Hardware SPI  
 [●] Software I2C  
 [●] Software SPI  
 [&nbsp;&nbsp;] GPIO & Delay  

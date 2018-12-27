@@ -4,11 +4,13 @@
 #include <stdlib.h>
 #include <u8g2_port.h>
 
+const char* yl_40_bus = "i2c2";
+
 static void yl_40_example(int argc,char *argv[])
 {
 	struct rt_i2c_bus_device *yl40_bus = RT_NULL;
-	const char* ylname = "i2c1";
-	yl40_bus = rt_i2c_bus_device_find(ylname);
+	
+	yl40_bus = rt_i2c_bus_device_find(yl_40_bus);
 	
 	rt_uint8_t t = 0;
 	if (yl40_bus == RT_NULL)
@@ -49,18 +51,6 @@ static void yl_40_example(int argc,char *argv[])
 		{
 			t++;
 		};
-		
-		/*
-		rt_uint8_t ret = rt_i2c_transfer(i2c_bus, &msgs, 1);	
-		if ( ret != 1)
-		{
-			rt_kprintf("Faled to send data %d\n", ret);
-		}
-		else
-		{
-			rt_kprintf("Succeed sending data %d\n", ret);
-		};
-		*/
 	}
 }
 MSH_CMD_EXPORT(yl_40_example, i2c yl-40 sample);
