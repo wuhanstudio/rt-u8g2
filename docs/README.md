@@ -14,4 +14,4 @@
 [●] Hardware SPI  
 [●] Software I2C  
 [●] Software SPI  
-[&nbsp;&nbsp;] GPIO & Delay  
+[●] 8080 & 6800  
