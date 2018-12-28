@@ -66,18 +66,30 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
 			break;
 		
 		case U8X8_MSG_GPIO_AND_DELAY_INIT:  
-			//Function which implements a delay, arg_int contains the amount of ms  
-			//set mode 
+			// Function which implements a delay, arg_int contains the amount of ms  
+			// set spi pin mode 
 			rt_pin_mode(u8x8->pins[U8X8_PIN_SPI_CLOCK],PIN_MODE_OUTPUT);//d0 a5 15 d1 a7 17 res b0 18 dc b1 19 cs a4 14  
 			rt_pin_mode(u8x8->pins[U8X8_PIN_SPI_DATA],PIN_MODE_OUTPUT);
 			rt_pin_mode(u8x8->pins[U8X8_PIN_RESET],PIN_MODE_OUTPUT);
 			rt_pin_mode(u8x8->pins[U8X8_PIN_DC],PIN_MODE_OUTPUT);
 			rt_pin_mode(u8x8->pins[U8X8_PIN_CS],PIN_MODE_OUTPUT);
-		
+			// set i2c pin mode
 			rt_pin_mode(u8x8->pins[U8X8_PIN_I2C_DATA],PIN_MODE_OUTPUT);
 			rt_pin_mode(u8x8->pins[U8X8_PIN_I2C_CLOCK],PIN_MODE_OUTPUT);
-		
-			//set value
+		  // set 8080 pin mode
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_D0],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_D1],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_D2],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_D3],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_D4],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_D5],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_D6],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_D7],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_E],PIN_MODE_OUTPUT);
+		  rt_pin_mode(u8x8->pins[U8X8_PIN_DC],PIN_MODE_OUTPUT);
+			rt_pin_mode(u8x8->pins[U8X8_PIN_RESET],PIN_MODE_OUTPUT);
+			
+			// set value
 			rt_pin_write(u8x8->pins[U8X8_PIN_SPI_CLOCK],1);
 			rt_pin_write(u8x8->pins[U8X8_PIN_SPI_DATA],1);
 			rt_pin_write(u8x8->pins[U8X8_PIN_RESET],1);
@@ -91,7 +103,48 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
 				__asm__ volatile("nop");
 			}
       break;							// arg_int=1: delay by 5us, arg_int = 4: delay by 1.25us
-		
+
+		//case U8X8_MSG_GPIO_D0:				// D0 or SPI clock pin: Output level in arg_int
+		//case U8X8_MSG_GPIO_SPI_CLOCK:
+
+		//case U8X8_MSG_GPIO_D1:				// D1 or SPI data pin: Output level in arg_int
+		//case U8X8_MSG_GPIO_SPI_DATA:
+
+		case U8X8_MSG_GPIO_D2:				// D2 pin: Output level in arg_int
+			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D2],1);  
+			else rt_pin_write(u8x8->pins[U8X8_PIN_D2],0);
+			break;
+			
+		case U8X8_MSG_GPIO_D3:				// D3 pin: Output level in arg_int
+			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D3],1);  
+			else rt_pin_write(u8x8->pins[U8X8_PIN_D3],0);
+			break;
+			
+		case U8X8_MSG_GPIO_D4:				// D4 pin: Output level in arg_int
+			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D4],1);  
+			else rt_pin_write(u8x8->pins[U8X8_PIN_D4],0);
+			break;
+			
+		case U8X8_MSG_GPIO_D5:				// D5 pin: Output level in arg_int
+			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D5],1);  
+			else rt_pin_write(u8x8->pins[U8X8_PIN_D5],0);
+			break;
+			
+		case U8X8_MSG_GPIO_D6:				// D6 pin: Output level in arg_int
+			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D6],1);  
+			else rt_pin_write(u8x8->pins[U8X8_PIN_D6],0);
+			break;
+			
+		case U8X8_MSG_GPIO_D7:				// D7 pin: Output level in arg_int
+			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D7],1);  
+			else rt_pin_write(u8x8->pins[U8X8_PIN_D7],0);
+			break;
+			
+		case U8X8_MSG_GPIO_E:				// E/WR pin: Output level in arg_int
+			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_E],1);  
+			else rt_pin_write(u8x8->pins[U8X8_PIN_E],0);
+			break;
+			
     case U8X8_MSG_GPIO_I2C_CLOCK:		// arg_int=0: Output low at I2C clock pin
 			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_I2C_CLOCK],1);  
 			else rt_pin_write(u8x8->pins[U8X8_PIN_I2C_CLOCK],0);  
@@ -107,7 +160,7 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
 			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_SPI_CLOCK],1);  
 			else rt_pin_write(u8x8->pins[U8X8_PIN_SPI_CLOCK],0);
 			break;
-							
+		
 		case U8X8_MSG_GPIO_SPI_DATA:
 			//Function to define the logic level of the data line to the display  
 			if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_SPI_DATA],1);  
