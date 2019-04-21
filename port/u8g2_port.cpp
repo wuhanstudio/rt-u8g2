@@ -3,6 +3,24 @@
 
 #define MAX_RETRY 3
 
+size_t U8X8::write(uint8_t v) 
+{
+  if ( v == '\n' )
+  {
+    uint8_t dy = u8x8_pgm_read(u8x8.font+3);		/* new 2019 format */
+    ty+=dy;
+    tx=0;
+  }
+  else
+  {
+    uint8_t dx = u8x8_pgm_read(u8x8.font+2);		/* new 2019 format */
+    u8x8_DrawGlyph(&u8x8, tx, ty, v);
+
+    tx+=dx;
+  }
+  return 1;
+}
+
 #if defined U8G2_USE_HW_I2C
 static struct rt_i2c_bus_device *i2c_bus = RT_NULL;
 #endif
@@ -120,82 +138,68 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
         //case U8X8_MSG_GPIO_SPI_DATA:
 
         case U8X8_MSG_GPIO_D2:                // D2 pin: Output level in arg_int
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D2],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_D2],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_D2],arg_int);
             break;
 
         case U8X8_MSG_GPIO_D3:                // D3 pin: Output level in arg_int
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D3],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_D3],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_D3], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D4:                // D4 pin: Output level in arg_int
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D4],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_D4],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_D4], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D5:                // D5 pin: Output level in arg_int
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D5],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_D5],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_D5], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D6:                // D6 pin: Output level in arg_int
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D6],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_D6],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_D6], arg_int);
             break;
 
         case U8X8_MSG_GPIO_D7:                // D7 pin: Output level in arg_int
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_D7],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_D7],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_D7], arg_int);
             break;
 
         case U8X8_MSG_GPIO_E:                // E/WR pin: Output level in arg_int
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_E],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_E],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_E], arg_int);
             break;
 
         case U8X8_MSG_GPIO_I2C_CLOCK:
             // arg_int=0: Output low at I2C clock pin
             // arg_int=1: Input dir with pullup high for I2C clock pin
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_I2C_CLOCK],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_I2C_CLOCK],0);  
+            rt_pin_write(u8x8->pins[U8X8_PIN_I2C_CLOCK], arg_int);
             break;
 
         case U8X8_MSG_GPIO_I2C_DATA:
             // arg_int=0: Output low at I2C data pin
             // arg_int=1: Input dir with pullup high for I2C data pin
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_I2C_DATA],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_I2C_DATA],0);              
+            rt_pin_write(u8x8->pins[U8X8_PIN_I2C_DATA], arg_int);
       break;
 
         case U8X8_MSG_GPIO_SPI_CLOCK:  
             //Function to define the logic level of the clockline  
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_SPI_CLOCK],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_SPI_CLOCK],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_SPI_CLOCK], arg_int);
             break;
 
         case U8X8_MSG_GPIO_SPI_DATA:
             //Function to define the logic level of the data line to the display  
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_SPI_DATA],1);  
-            else rt_pin_write(u8x8->pins[U8X8_PIN_SPI_DATA],0);  
+            rt_pin_write(u8x8->pins[U8X8_PIN_SPI_DATA], arg_int);
             break;
 
         case U8X8_MSG_GPIO_CS:
             // Function to define the logic level of the CS line  
-            if(arg_int)        rt_pin_write(u8x8->pins[U8X8_PIN_CS],1);
-            else        rt_pin_write(u8x8->pins[U8X8_PIN_CS],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_CS], arg_int);
             break;
 
         case U8X8_MSG_GPIO_DC:
             //Function to define the logic level of the Data/ Command line  
-            if(arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_DC],1);
-            else rt_pin_write(u8x8->pins[U8X8_PIN_DC],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_DC], arg_int);
             break;
 
         case U8X8_MSG_GPIO_RESET:
             //Function to define the logic level of the RESET line
-            if (arg_int) rt_pin_write(u8x8->pins[U8X8_PIN_RESET],1);
-            else rt_pin_write(u8x8->pins[U8X8_PIN_RESET],0);
+            rt_pin_write(u8x8->pins[U8X8_PIN_RESET], arg_int);
             break;
 
         default:
@@ -336,3 +340,220 @@ uint8_t u8x8_byte_rt_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
     return 1;
 }
 #endif /* U8G2_USE_HW_SPI */
+
+#ifdef U8X8_USE_PINS
+
+/*
+  use U8X8_PIN_NONE as value for "reset", if there is no reset line
+*/
+
+void u8x8_SetPin_4Wire_SW_SPI(u8x8_t *u8x8, uint8_t clock, uint8_t data, uint8_t cs, uint8_t dc, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_SPI_CLOCK, clock);
+  u8x8_SetPin(u8x8, U8X8_PIN_SPI_DATA, data);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+
+#ifdef _obsolete_com_specific_setup
+void u8x8_Setup_4Wire_SW_SPI(u8x8_t *u8x8, u8x8_msg_cb display_cb, uint8_t clock, uint8_t data, uint8_t cs, uint8_t dc, uint8_t reset)
+{
+  u8x8_Setup(u8x8, display_cb, u8x8_cad_001, u8x8_byte_4wire_sw_spi, u8x8_gpio_and_delay_arduino);
+  
+  /* assign individual pin values (only for ARDUINO, if pin_list is available) */
+  u8x8_SetPin(u8x8, U8X8_PIN_SPI_CLOCK, clock);
+  u8x8_SetPin(u8x8, U8X8_PIN_SPI_DATA, data);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+#endif /* obsolete com specific setup */
+
+void u8x8_SetPin_3Wire_SW_SPI(u8x8_t *u8x8, uint8_t clock, uint8_t data, uint8_t cs, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_SPI_CLOCK, clock);
+  u8x8_SetPin(u8x8, U8X8_PIN_SPI_DATA, data);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+
+#ifdef _obsolete_com_specific_setup
+void u8x8_Setup_3Wire_SW_SPI(u8x8_t *u8x8, u8x8_msg_cb display_cb, uint8_t clock, uint8_t data, uint8_t cs, uint8_t reset)
+{
+  u8x8_Setup(u8x8, display_cb, u8x8_cad_001, u8x8_byte_3wire_sw_spi, u8x8_gpio_and_delay_arduino);
+  
+  /* assign individual pin values (only for ARDUINO, if pin_list is available) */
+  u8x8_SetPin(u8x8, U8X8_PIN_SPI_CLOCK, clock);
+  u8x8_SetPin(u8x8, U8X8_PIN_SPI_DATA, data);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+#endif /* obsolete com specific setup */
+
+/*
+  use U8X8_PIN_NONE as value for "reset", if there is no reset line
+*/
+void u8x8_SetPin_4Wire_HW_SPI(u8x8_t *u8x8, uint8_t cs, uint8_t dc, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+
+void u8x8_SetPin_ST7920_HW_SPI(u8x8_t *u8x8, uint8_t cs, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+
+
+#ifdef _obsolete_com_specific_setup
+void u8x8_Setup_4Wire_HW_SPI(u8x8_t *u8x8, u8x8_msg_cb display_cb, uint8_t cs, uint8_t dc, uint8_t reset)
+{
+  u8x8_Setup(u8x8, display_cb, u8x8_cad_001, u8x8_byte_arduino_hw_spi, u8x8_gpio_and_delay_arduino);
+  
+  /* assign individual pin values (only for ARDUINO, if pin_list is available) */
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+#endif /* obsolete com specific setup */
+
+
+void u8x8_SetPin_SW_I2C(u8x8_t *u8x8, uint8_t clock, uint8_t data, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_I2C_CLOCK, clock);
+  u8x8_SetPin(u8x8, U8X8_PIN_I2C_DATA, data);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+
+#ifdef _obsolete_com_specific_setup
+void u8x8_Setup_SSD13xx_SW_I2C(u8x8_t *u8x8, u8x8_msg_cb display_cb, uint8_t clock, uint8_t data, uint8_t reset)
+{
+  u8x8_Setup(u8x8, display_cb, u8x8_cad_001, u8x8_byte_ssd13xx_sw_i2c, u8x8_gpio_and_delay_arduino);
+  
+  /* assign individual pin values (only for ARDUINO, if pin_list is available) */
+  u8x8_SetPin(u8x8, U8X8_PIN_I2C_CLOCK, clock);
+  u8x8_SetPin(u8x8, U8X8_PIN_I2C_DATA, data);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+#endif /* obsolete com specific setup */
+
+void u8x8_SetPin_HW_I2C(u8x8_t *u8x8, uint8_t reset, uint8_t clock, uint8_t data)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+  u8x8_SetPin(u8x8, U8X8_PIN_I2C_CLOCK, clock);
+  u8x8_SetPin(u8x8, U8X8_PIN_I2C_DATA, data);
+}
+
+void u8x8_SetPin_8Bit_6800(u8x8_t *u8x8, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t enable, uint8_t cs, uint8_t dc, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_D0, d0);
+  u8x8_SetPin(u8x8, U8X8_PIN_D1, d1);
+  u8x8_SetPin(u8x8, U8X8_PIN_D2, d2);
+  u8x8_SetPin(u8x8, U8X8_PIN_D3, d3);
+  u8x8_SetPin(u8x8, U8X8_PIN_D4, d4);
+  u8x8_SetPin(u8x8, U8X8_PIN_D5, d5);
+  u8x8_SetPin(u8x8, U8X8_PIN_D6, d6);
+  u8x8_SetPin(u8x8, U8X8_PIN_D7, d7);
+  u8x8_SetPin(u8x8, U8X8_PIN_E, enable);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+
+#ifdef _obsolete_com_specific_setup
+void u8x8_Setup_8Bit_6800(u8x8_t *u8x8, u8x8_msg_cb display_cb, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t enable, uint8_t cs, uint8_t dc, uint8_t reset)
+{
+  u8x8_Setup(u8x8, display_cb, u8x8_cad_001, u8x8_byte_8bit_6800mode, u8x8_gpio_and_delay_arduino);
+  
+  /* assign individual pin values (only for ARDUINO, if pin_list is available) */
+  u8x8_SetPin(u8x8, U8X8_PIN_D0, d0);
+  u8x8_SetPin(u8x8, U8X8_PIN_D1, d1);
+  u8x8_SetPin(u8x8, U8X8_PIN_D2, d2);
+  u8x8_SetPin(u8x8, U8X8_PIN_D3, d3);
+  u8x8_SetPin(u8x8, U8X8_PIN_D4, d4);
+  u8x8_SetPin(u8x8, U8X8_PIN_D5, d5);
+  u8x8_SetPin(u8x8, U8X8_PIN_D6, d6);
+  u8x8_SetPin(u8x8, U8X8_PIN_D7, d7);
+  u8x8_SetPin(u8x8, U8X8_PIN_E, enable);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+#endif /* obsolete com specific setup */
+
+
+void u8x8_SetPin_8Bit_8080(u8x8_t *u8x8, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t wr, uint8_t cs, uint8_t dc, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_D0, d0);
+  u8x8_SetPin(u8x8, U8X8_PIN_D1, d1);
+  u8x8_SetPin(u8x8, U8X8_PIN_D2, d2);
+  u8x8_SetPin(u8x8, U8X8_PIN_D3, d3);
+  u8x8_SetPin(u8x8, U8X8_PIN_D4, d4);
+  u8x8_SetPin(u8x8, U8X8_PIN_D5, d5);
+  u8x8_SetPin(u8x8, U8X8_PIN_D6, d6);
+  u8x8_SetPin(u8x8, U8X8_PIN_D7, d7);
+  u8x8_SetPin(u8x8, U8X8_PIN_E, wr);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+
+
+#ifdef _obsolete_com_specific_setup
+void u8x8_Setup_8Bit_8080(u8x8_t *u8x8, u8x8_msg_cb display_cb, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t wr, uint8_t cs, uint8_t dc, uint8_t reset)
+{
+  u8x8_Setup(u8x8, display_cb, u8x8_cad_001, u8x8_byte_8bit_8080mode, u8x8_gpio_and_delay_arduino);
+  
+  /* assign individual pin values (only for ARDUINO, if pin_list is available) */
+  u8x8_SetPin(u8x8, U8X8_PIN_D0, d0);
+  u8x8_SetPin(u8x8, U8X8_PIN_D1, d1);
+  u8x8_SetPin(u8x8, U8X8_PIN_D2, d2);
+  u8x8_SetPin(u8x8, U8X8_PIN_D3, d3);
+  u8x8_SetPin(u8x8, U8X8_PIN_D4, d4);
+  u8x8_SetPin(u8x8, U8X8_PIN_D5, d5);
+  u8x8_SetPin(u8x8, U8X8_PIN_D6, d6);
+  u8x8_SetPin(u8x8, U8X8_PIN_D7, d7);
+  u8x8_SetPin(u8x8, U8X8_PIN_E, wr);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+#endif /* obsolete com specific setup */
+
+void u8x8_SetPin_KS0108(u8x8_t *u8x8, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t enable, uint8_t dc, uint8_t cs0, uint8_t cs1, uint8_t cs2, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_D0, d0);
+  u8x8_SetPin(u8x8, U8X8_PIN_D1, d1);
+  u8x8_SetPin(u8x8, U8X8_PIN_D2, d2);
+  u8x8_SetPin(u8x8, U8X8_PIN_D3, d3);
+  u8x8_SetPin(u8x8, U8X8_PIN_D4, d4);
+  u8x8_SetPin(u8x8, U8X8_PIN_D5, d5);
+  u8x8_SetPin(u8x8, U8X8_PIN_D6, d6);
+  u8x8_SetPin(u8x8, U8X8_PIN_D7, d7);
+  u8x8_SetPin(u8x8, U8X8_PIN_E, enable);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, cs0);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS1, cs1);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS2, cs2);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+
+void u8x8_SetPin_SED1520(u8x8_t *u8x8, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t dc, uint8_t e1, uint8_t e2, uint8_t reset)
+{
+  u8x8_SetPin(u8x8, U8X8_PIN_D0, d0);
+  u8x8_SetPin(u8x8, U8X8_PIN_D1, d1);
+  u8x8_SetPin(u8x8, U8X8_PIN_D2, d2);
+  u8x8_SetPin(u8x8, U8X8_PIN_D3, d3);
+  u8x8_SetPin(u8x8, U8X8_PIN_D4, d4);
+  u8x8_SetPin(u8x8, U8X8_PIN_D5, d5);
+  u8x8_SetPin(u8x8, U8X8_PIN_D6, d6);
+  u8x8_SetPin(u8x8, U8X8_PIN_D7, d7);
+  u8x8_SetPin(u8x8, U8X8_PIN_E, e1);
+  u8x8_SetPin(u8x8, U8X8_PIN_CS, e2);
+  u8x8_SetPin(u8x8, U8X8_PIN_DC, dc);
+  u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
+}
+#endif // U8X8_USE_PINS

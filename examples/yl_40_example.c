@@ -2,7 +2,6 @@
 #include <rtthread.h>
 #include <rtdevice.h>
 #include <stdlib.h>
-#include <u8g2_port.h>
 
 static void yl_40_example(int argc, char *argv[])
 {
