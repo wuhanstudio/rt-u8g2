@@ -7,13 +7,13 @@ size_t U8X8::write(uint8_t v)
 {
   if ( v == '\n' )
   {
-    uint8_t dy = u8x8_pgm_read(u8x8.font+3);		/* new 2019 format */
+    uint8_t dy = u8x8_pgm_read(u8x8.font+3);        /* new 2019 format */
     ty+=dy;
     tx=0;
   }
   else
   {
-    uint8_t dx = u8x8_pgm_read(u8x8.font+2);		/* new 2019 format */
+    uint8_t dx = u8x8_pgm_read(u8x8.font+2);        /* new 2019 format */
     u8x8_DrawGlyph(&u8x8, tx, ty, v);
 
     tx+=dx;
@@ -66,41 +66,42 @@ int rt_hw_spi_config(uint8_t spi_mode, uint32_t max_hz, uint8_t cs_pin )
 
 uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
+    uint8_t i;
     switch(msg)
     {
-        case U8X8_MSG_DELAY_NANO:            // delay arg_int * 1 nano second
+        case U8X8_MSG_DELAY_NANO:               // delay arg_int * 1 nano second
             __asm__ volatile("nop");
             break;
-        
-        case U8X8_MSG_DELAY_100NANO:        // delay arg_int * 100 nano seconds
+
+        case U8X8_MSG_DELAY_100NANO:            // delay arg_int * 100 nano seconds
             __asm__ volatile("nop");
             break;
-        
-        case U8X8_MSG_DELAY_10MICRO:        // delay arg_int * 10 micro seconds
+
+        case U8X8_MSG_DELAY_10MICRO:            // delay arg_int * 10 micro seconds
             for (uint16_t n = 0; n < 320; n++)
             {
                 __asm__ volatile("nop");
             }
         break;
-        
-        case U8X8_MSG_DELAY_MILLI:            // delay arg_int * 1 milli second
+
+        case U8X8_MSG_DELAY_MILLI:              // delay arg_int * 1 milli second
             rt_thread_delay(arg_int);
             break;
-        
+
         case U8X8_MSG_GPIO_AND_DELAY_INIT:  
             // Function which implements a delay, arg_int contains the amount of ms  
-            
+
             // set spi pin mode 
-            rt_pin_mode(u8x8->pins[U8X8_PIN_SPI_CLOCK],PIN_MODE_OUTPUT);//d0 a5 15 d1 a7 17 res b0 18 dc b1 19 cs a4 14  
+            rt_pin_mode(u8x8->pins[U8X8_PIN_SPI_CLOCK],PIN_MODE_OUTPUT);
             rt_pin_mode(u8x8->pins[U8X8_PIN_SPI_DATA],PIN_MODE_OUTPUT);
             rt_pin_mode(u8x8->pins[U8X8_PIN_RESET],PIN_MODE_OUTPUT);
             rt_pin_mode(u8x8->pins[U8X8_PIN_DC],PIN_MODE_OUTPUT);
             rt_pin_mode(u8x8->pins[U8X8_PIN_CS],PIN_MODE_OUTPUT);
-            
+
             // set i2c pin mode
             rt_pin_mode(u8x8->pins[U8X8_PIN_I2C_DATA],PIN_MODE_OUTPUT);
             rt_pin_mode(u8x8->pins[U8X8_PIN_I2C_CLOCK],PIN_MODE_OUTPUT);
-            
+
             // set 8080 pin mode
             rt_pin_mode(u8x8->pins[U8X8_PIN_D0],PIN_MODE_OUTPUT);
             rt_pin_mode(u8x8->pins[U8X8_PIN_D1],PIN_MODE_OUTPUT);
@@ -113,7 +114,15 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
             rt_pin_mode(u8x8->pins[U8X8_PIN_E],PIN_MODE_OUTPUT);
             rt_pin_mode(u8x8->pins[U8X8_PIN_DC],PIN_MODE_OUTPUT);
             rt_pin_mode(u8x8->pins[U8X8_PIN_RESET],PIN_MODE_OUTPUT);
-            
+
+            // set menu pin mode
+            rt_pin_mode(u8x8->pins[U8X8_PIN_MENU_HOME],PIN_MODE_INPUT_PULLUP);
+            rt_pin_mode(u8x8->pins[U8X8_PIN_MENU_SELECT],PIN_MODE_INPUT_PULLUP);
+            rt_pin_mode(u8x8->pins[U8X8_PIN_MENU_PREV],PIN_MODE_INPUT_PULLUP);
+            rt_pin_mode(u8x8->pins[U8X8_PIN_MENU_NEXT],PIN_MODE_INPUT_PULLUP);
+            rt_pin_mode(u8x8->pins[U8X8_PIN_MENU_UP],PIN_MODE_INPUT_PULLUP);
+            rt_pin_mode(u8x8->pins[U8X8_PIN_MENU_DOWN],PIN_MODE_INPUT_PULLUP);
+
             // set value
             rt_pin_write(u8x8->pins[U8X8_PIN_SPI_CLOCK],1);
             rt_pin_write(u8x8->pins[U8X8_PIN_SPI_DATA],1);
@@ -121,7 +130,7 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
             rt_pin_write(u8x8->pins[U8X8_PIN_DC],1);
             rt_pin_write(u8x8->pins[U8X8_PIN_CS],1);
             break;
-        
+
         case U8X8_MSG_DELAY_I2C:
             // arg_int is the I2C speed in 100KHz, e.g. 4 = 400 KHz
             // arg_int=1: delay by 5us, arg_int = 4: delay by 1.25us
@@ -137,31 +146,31 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
         //case U8X8_MSG_GPIO_D1:                // D1 or SPI data pin: Output level in arg_int
         //case U8X8_MSG_GPIO_SPI_DATA:
 
-        case U8X8_MSG_GPIO_D2:                // D2 pin: Output level in arg_int
+        case U8X8_MSG_GPIO_D2:                  // D2 pin: Output level in arg_int
             rt_pin_write(u8x8->pins[U8X8_PIN_D2],arg_int);
             break;
 
-        case U8X8_MSG_GPIO_D3:                // D3 pin: Output level in arg_int
+        case U8X8_MSG_GPIO_D3:                  // D3 pin: Output level in arg_int
             rt_pin_write(u8x8->pins[U8X8_PIN_D3], arg_int);
             break;
 
-        case U8X8_MSG_GPIO_D4:                // D4 pin: Output level in arg_int
+        case U8X8_MSG_GPIO_D4:                  // D4 pin: Output level in arg_int
             rt_pin_write(u8x8->pins[U8X8_PIN_D4], arg_int);
             break;
 
-        case U8X8_MSG_GPIO_D5:                // D5 pin: Output level in arg_int
+        case U8X8_MSG_GPIO_D5:                  // D5 pin: Output level in arg_int
             rt_pin_write(u8x8->pins[U8X8_PIN_D5], arg_int);
             break;
 
-        case U8X8_MSG_GPIO_D6:                // D6 pin: Output level in arg_int
+        case U8X8_MSG_GPIO_D6:                  // D6 pin: Output level in arg_int
             rt_pin_write(u8x8->pins[U8X8_PIN_D6], arg_int);
             break;
 
-        case U8X8_MSG_GPIO_D7:                // D7 pin: Output level in arg_int
+        case U8X8_MSG_GPIO_D7:                  // D7 pin: Output level in arg_int
             rt_pin_write(u8x8->pins[U8X8_PIN_D7], arg_int);
             break;
 
-        case U8X8_MSG_GPIO_E:                // E/WR pin: Output level in arg_int
+        case U8X8_MSG_GPIO_E:                   // E/WR pin: Output level in arg_int
             rt_pin_write(u8x8->pins[U8X8_PIN_E], arg_int);
             break;
 
@@ -175,15 +184,15 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
             // arg_int=0: Output low at I2C data pin
             // arg_int=1: Input dir with pullup high for I2C data pin
             rt_pin_write(u8x8->pins[U8X8_PIN_I2C_DATA], arg_int);
-      break;
+            break;
 
         case U8X8_MSG_GPIO_SPI_CLOCK:  
-            //Function to define the logic level of the clockline  
+            // Function to define the logic level of the clockline  
             rt_pin_write(u8x8->pins[U8X8_PIN_SPI_CLOCK], arg_int);
             break;
 
         case U8X8_MSG_GPIO_SPI_DATA:
-            //Function to define the logic level of the data line to the display  
+            // Function to define the logic level of the data line to the display  
             rt_pin_write(u8x8->pins[U8X8_PIN_SPI_DATA], arg_int);
             break;
 
@@ -193,18 +202,66 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
             break;
 
         case U8X8_MSG_GPIO_DC:
-            //Function to define the logic level of the Data/ Command line  
+            // Function to define the logic level of the Data/ Command line  
             rt_pin_write(u8x8->pins[U8X8_PIN_DC], arg_int);
             break;
 
         case U8X8_MSG_GPIO_RESET:
-            //Function to define the logic level of the RESET line
+            // Function to define the logic level of the RESET line
             rt_pin_write(u8x8->pins[U8X8_PIN_RESET], arg_int);
             break;
 
+        case U8X8_MSG_GPIO_MENU_SELECT:
+            u8x8_SetGPIOResult(u8x8, 
+                               /* get menu select pin state */ 
+                               rt_pin_read(u8x8->pins[U8X8_PIN_MENU_SELECT]));
+            // rt_kprintf("Menu Select %d\n", rt_pin_read(u8x8->pins[U8X8_PIN_MENU_SELECT]));
+            break;
+
+        case U8X8_MSG_GPIO_MENU_NEXT:
+            u8x8_SetGPIOResult(u8x8, 
+                               /* get menu next pin state */ 
+                               rt_pin_read(u8x8->pins[U8X8_PIN_MENU_NEXT]));
+            // rt_kprintf("Menu Next %d\n", rt_pin_read(u8x8->pins[U8X8_PIN_MENU_NEXT]));
+            break;
+
+        case U8X8_MSG_GPIO_MENU_PREV:
+            u8x8_SetGPIOResult(u8x8, 
+                               /* get menu prev pin state */ 
+                               rt_pin_read(u8x8->pins[U8X8_PIN_MENU_PREV]));
+            // rt_kprintf("Menu Prev %d\n", rt_pin_read(u8x8->pins[U8X8_PIN_MENU_PREV]));
+            break;
+
+        case U8X8_MSG_GPIO_MENU_HOME:
+            u8x8_SetGPIOResult(u8x8, 
+                               /* get menu home pin state */ 
+                               rt_pin_read(u8x8->pins[U8X8_PIN_MENU_HOME]));
+            // rt_kprintf("Menu Home %d\n", rt_pin_read(u8x8->pins[U8X8_PIN_MENU_HOME]));
+            break;
+
         default:
-            //A message was received which is not implemented, return 0 to indicate an error 
-            return 0; 
+            if ( msg >= U8X8_MSG_GPIO(0) )
+            {
+                i = u8x8_GetPinValue(u8x8, msg);
+                if ( i != U8X8_PIN_NONE )
+                {
+                    if ( u8x8_GetPinIndex(u8x8, msg) < U8X8_PIN_OUTPUT_CNT )
+                    {
+                        rt_pin_write(i, arg_int);
+                    }
+                    else
+                    {
+                        if ( u8x8_GetPinIndex(u8x8, msg) == U8X8_PIN_OUTPUT_CNT )
+                        {
+                            // call yield() for the first pin only, u8x8 will always request all the pins, so this should be ok
+                            // yield();
+                        }
+                        u8x8_SetGPIOResult(u8x8, rt_pin_read(i) == 0 ? 0 : 1);
+                    }
+                }
+                break;
+            }
+            return 0;
     }
     return 1;
 }

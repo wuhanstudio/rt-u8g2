@@ -45,10 +45,11 @@
 #define _U8G2LIB_HH
 
 #include <rtthread.h>
-#include "u8g2_port.h"
 #include <src/u8g2.h>
+#include "Print.h"
+#include "u8g2_port.h"
 
-class U8G2
+class U8G2: public Print
 {
   protected:
     u8g2_t u8g2;
@@ -156,13 +157,18 @@ class U8G2
     uint8_t *getBufferPtr(void) { return u8g2_GetBufferPtr(&u8g2); }
     uint8_t getBufferTileHeight(void) { return u8g2_GetBufferTileHeight(&u8g2); }
     uint8_t getBufferTileWidth(void) { return u8g2_GetBufferTileWidth(&u8g2); }
-    uint8_t getPageCurrTileRow(void) { return u8g2_GetBufferCurrTileRow(&u8g2); }	// obsolete
-    void setPageCurrTileRow(uint8_t row) { u8g2_SetBufferCurrTileRow(&u8g2, row); }	// obsolete
+    uint8_t getPageCurrTileRow(void) { return u8g2_GetBufferCurrTileRow(&u8g2); } // obsolete
+    void setPageCurrTileRow(uint8_t row) { u8g2_SetBufferCurrTileRow(&u8g2, row); } // obsolete
     uint8_t getBufferCurrTileRow(void) { return u8g2_GetBufferCurrTileRow(&u8g2); }
     void setBufferCurrTileRow(uint8_t row) { u8g2_SetBufferCurrTileRow(&u8g2, row); }
     
     // this should be renamed to setBufferAutoClear
     void setAutoPageClear(uint8_t mode)  { u8g2_SetAutoPageClear(&u8g2, mode); }
+    
+    void updateDisplayArea(uint8_t  tx, uint8_t ty, uint8_t tw, uint8_t th)
+      { u8g2_UpdateDisplayArea(&u8g2, tx, ty, tw, th); }
+    void updateDisplay(void)
+      { u8g2_UpdateDisplay(&u8g2); }
 
     /* clib/u8g2.hvline.c */
     void setDrawColor(uint8_t color_index) { u8g2_SetDrawColor(&u8g2, color_index); }
@@ -245,22 +251,22 @@ u8g2_uint_t u8g2_GetUTF8Width(u8g2_t *u8g2, const char *str);
     
     // not required any more, enable UTF8 for print 
     //void printUTF8(const char *s) { tx += u8g2_DrawUTF8(&u8g2, tx, ty, s); }
-	
+
     
     /* virtual function for print base class */    
-    size_t write(uint8_t v) {
+    virtual size_t write(uint8_t v) {
       uint16_t e = cpp_next_cb(&(u8g2.u8x8), v);
       
       if ( e < 0x0fffe )
-	tx += u8g2_DrawGlyph(&u8g2, tx, ty, e);
+      tx += u8g2_DrawGlyph(&u8g2, tx, ty, e);
       return 1;
      }
 
-    size_t write(const uint8_t *buffer, size_t size) {
+    virtual size_t write(const uint8_t *buffer, size_t size) {
       size_t cnt = 0;
       while( size > 0 ) {
-	cnt += write(*buffer++); 
-	size--;
+        cnt += write(*buffer++); 
+        size--;
       }
       return cnt;
     }
@@ -339,11 +345,11 @@ class U8G2LOG
     size_t write(const uint8_t *buffer, size_t size) {
       size_t cnt = 0;
       while( size > 0 ) {
-	cnt += write(*buffer++); 
-	size--;
+        cnt += write(*buffer++); 
+        size--;
       }
       return cnt;
-    }  
+    }
 
     void writeString(const char *s) { u8log_WriteString(&u8log, s); }
     void writeChar(uint8_t c) { u8log_WriteChar(&u8log, c); }
@@ -364,9 +370,9 @@ inline void U8G2::drawLog(u8g2_uint_t x, u8g2_uint_t y, class U8G2LOG &u8g2log)
 /* 
   U8G2_<controller>_<display>_<memory>_<communication> 
   memory
-    "1"	one page
-    "2"	two pages
-    "f"	full frame buffer
+    "1" one page
+    "2" two pages
+    "f" full frame buffer
   communication
     "SW SPI"
 

@@ -225,16 +225,16 @@ uint8_t u8x8_d_uc1617_jlx128128(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void
     switch(msg)
     {
       case U8X8_MSG_DISPLAY_SETUP_MEMORY:
-				u8x8_d_helper_display_setup_memory(u8x8, &u8x8_uc1617_128x128_display_info);
-				break;
+	u8x8_d_helper_display_setup_memory(u8x8, &u8x8_uc1617_128x128_display_info);
+	break;
       case U8X8_MSG_DISPLAY_INIT:
-				u8x8_d_helper_display_init(u8x8);
-				u8x8_cad_SendSequence(u8x8, u8x8_d_uc1617_jlx128128_init_seq);
-				for(;;)
-				;
-				break;
+	u8x8_d_helper_display_init(u8x8);
+	u8x8_cad_SendSequence(u8x8, u8x8_d_uc1617_jlx128128_init_seq);
+	for(;;)
+	  ;
+	break;
       default:
-				return 0;		/* msg unknown */
+	return 0;		/* msg unknown */
     }
   }
   return 1;
