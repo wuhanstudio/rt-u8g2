@@ -557,8 +557,3 @@ uint8_t u8x8_d_t6963_128x64_alt(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void
   }
   return 1;
 }
-
-
-  
-
-  
