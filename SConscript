@@ -46,6 +46,39 @@ else:
 	if GetDepend('U8G2_USING_I2C_YL40'):
 		src    += Glob('examples/yl_40_example.c')
 
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_FONT_USAGE'):
+		src    += Glob('examples/full_buffer/FontUsage.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_FPS'):
+		src    += Glob('examples/full_buffer/FPS.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_GRAPHIC_TEST'):
+		src    += Glob('examples/full_buffer/GraphicsTest.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_HELLO_WORLD'):
+		src    += Glob('examples/full_buffer/HelloWorld.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_ICON_MENU'):
+		src    += Glob('examples/full_buffer/IconMenu.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_PRINT_UTF8'):
+		src    += Glob('examples/full_buffer/PrintUTF8.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_SELECTION_LIST'):
+		src    += Glob('examples/full_buffer/SelectionList.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_U8G2_LOGO'):
+		src    += Glob('examples/full_buffer/U8g2Logo.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_UPDATE_AREA'):
+		src    += Glob('examples/full_buffer/UpdateArea.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_WEATHER'):
+		src    += Glob('examples/full_buffer/Weather.cpp')
+
+	if GetDepend('U8G2_USING_FRAME_EXAMPLE_SPACE_TRASH'):
+		src    += Glob('examples/games/SpaceTrash.cpp')
+
 path    = [cwd + '/']
 path   += [cwd + '/port']
 

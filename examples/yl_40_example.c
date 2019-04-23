@@ -3,7 +3,7 @@
 #include <rtdevice.h>
 #include <stdlib.h>
 
-static void yl_40_example(int argc, char *argv[])
+static void u8g2_yl_40_example(int argc, char *argv[])
 {
     struct rt_i2c_bus_device *yl40_bus = RT_NULL;
 
@@ -50,4 +50,4 @@ static void yl_40_example(int argc, char *argv[])
         };
     }
 }
-MSH_CMD_EXPORT(yl_40_example, i2c yl-40 sample);
+MSH_CMD_EXPORT(u8g2_yl_40_example, i2c yl-40 sample);

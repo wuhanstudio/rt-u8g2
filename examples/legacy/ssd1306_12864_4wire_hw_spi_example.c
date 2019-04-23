@@ -10,7 +10,7 @@
 #define OLED_SPI_PIN_DC                     15  // PA1
 #define OLED_SPI_PIN_CS                     14  // PA0
 
-static void ssd1306_12864_4wire_hw_spi_example(int argc,char *argv[])
+static void u8g2_ssd1306_12864_4wire_hw_spi_example(int argc,char *argv[])
 {
     u8g2_t u8g2;
 
@@ -34,4 +34,4 @@ static void ssd1306_12864_4wire_hw_spi_example(int argc,char *argv[])
     u8g2_DrawGlyph(&u8g2, 112, 56, 0x2603 );
     u8g2_SendBuffer(&u8g2);
 }
-MSH_CMD_EXPORT(ssd1306_12864_4wire_hw_spi_example, sw 4wire spi ssd1306 sample);
+MSH_CMD_EXPORT(u8g2_ssd1306_12864_4wire_hw_spi_example, sw 4wire spi ssd1306 sample);

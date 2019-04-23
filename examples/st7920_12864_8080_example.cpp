@@ -34,7 +34,7 @@ static U8G2_ST7920_128X64_F_8080 u8g2(U8G2_R0,
                                       /*dc=*/ ST7920_8080_PIN_DC, 
                                       /*reset=*/ ST7920_8080_PIN_RST);
 
-static void st7920_12864_8080_example(int argc,char *argv[])
+static void u8g2_st7920_12864_8080_example(int argc,char *argv[])
 {
     u8g2.begin();
     u8g2.clearBuffer();                         // clear the internal memory
@@ -45,4 +45,4 @@ static void st7920_12864_8080_example(int argc,char *argv[])
     u8g2.drawGlyph(112, 56, 0x2603 );
     u8g2.sendBuffer();
 }
-MSH_CMD_EXPORT(st7920_12864_8080_example, st7920 12864 LCD sample);
+MSH_CMD_EXPORT(u8g2_st7920_12864_8080_example, st7920 12864 LCD sample);

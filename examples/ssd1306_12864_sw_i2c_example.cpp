@@ -15,7 +15,7 @@ static U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0,
                                          /* reset=*/ U8X8_PIN_NONE); 
                                          // All Boards without Reset of the Display
 
-static void ssd1306_12864_sw_i2c_example(int argc,char *argv[])
+static void u8g2_ssd1306_12864_sw_i2c_example(int argc,char *argv[])
 {
     u8g2.begin();
     u8g2.clearBuffer();                         // clear the internal memory
@@ -26,4 +26,4 @@ static void ssd1306_12864_sw_i2c_example(int argc,char *argv[])
     u8g2.drawGlyph(112, 56, 0x2603 );
     u8g2.sendBuffer();
 }
-MSH_CMD_EXPORT(ssd1306_12864_sw_i2c_example, i2c ssd1306 software i2c sample);
+MSH_CMD_EXPORT(u8g2_ssd1306_12864_sw_i2c_example, i2c ssd1306 software i2c sample);

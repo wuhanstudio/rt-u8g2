@@ -20,7 +20,7 @@ static U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0,
                                             /* dc=*/ OLED_SPI_PIN_DC, 
                                             /* reset=*/ OLED_SPI_PIN_RES);
 
-static void ssd1306_12864_4wire_sw_spi_example(int argc,char *argv[])
+static void u8g2_ssd1306_12864_4wire_sw_spi_example(int argc,char *argv[])
 {
     u8g2.begin();
     u8g2.clearBuffer();                         // clear the internal memory
@@ -31,4 +31,4 @@ static void ssd1306_12864_4wire_sw_spi_example(int argc,char *argv[])
     u8g2.drawGlyph(112, 56, 0x2603 );
     u8g2.sendBuffer();
 }
-MSH_CMD_EXPORT(ssd1306_12864_4wire_sw_spi_example, sw 4wire spi ssd1306 sample);
+MSH_CMD_EXPORT(u8g2_ssd1306_12864_4wire_sw_spi_example, sw 4wire spi ssd1306 sample);

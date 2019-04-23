@@ -35,7 +35,7 @@ void u8x8_SetPin_8Bit_8080(u8x8_t *u8x8, uint8_t d0, uint8_t d1, uint8_t d2, uin
     u8x8_SetPin(u8x8, U8X8_PIN_RESET, reset);
 }
 
-static void st7920_12864_8080_example(int argc,char *argv[])
+static void u8g2_st7920_12864_8080_example(int argc,char *argv[])
 {
     u8g2_t u8g2;
 
@@ -63,4 +63,4 @@ static void st7920_12864_8080_example(int argc,char *argv[])
     u8g2_DrawGlyph(&u8g2, 112, 56, 0x2603 );
     u8g2_SendBuffer(&u8g2);
 }
-MSH_CMD_EXPORT(st7920_12864_8080_example, st7920 12864 LCD sample);
+MSH_CMD_EXPORT(u8g2_st7920_12864_8080_example, st7920 12864 LCD sample);
