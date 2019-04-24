@@ -273,7 +273,7 @@ struct menu_state
 #define ICON_BGAP 16
 #define ICON_Y 32+ ICON_GAP
 
-struct menu_entry_type menu_entry_list[] =
+static struct menu_entry_type menu_entry_list[] =
 {
   { u8g2_font_open_iconic_embedded_4x_t, 65, "Clock Setup"},
   { u8g2_font_open_iconic_embedded_4x_t, 66, "Gear Game"},
@@ -366,8 +366,8 @@ static uint8_t towards(struct menu_state *current, struct menu_state *destinatio
   return r;
 }
 
-struct menu_state current_state = { ICON_BGAP, ICON_BGAP, 0 };
-struct menu_state destination_state = { ICON_BGAP, ICON_BGAP, 0 };
+static struct menu_state current_state = { ICON_BGAP, ICON_BGAP, 0 };
+static struct menu_state destination_state = { ICON_BGAP, ICON_BGAP, 0 };
 
 #define THREAD_PRIORITY         25
 #define THREAD_STACK_SIZE       512

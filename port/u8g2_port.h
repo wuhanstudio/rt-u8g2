@@ -3,9 +3,10 @@
 
 #include <rtthread.h>
 #include <rtdevice.h>
+#include <drv_spi.h>
 #include <src/u8g2.h>
 #include <src/u8x8.h>
-#include <drv_spi.h>
+#include "Print.h"
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
@@ -56,7 +57,7 @@ void u8x8_SetPin_SED1520(u8x8_t *u8x8, uint8_t d0, uint8_t d1, uint8_t d2, uint8
 //void u8x8_Setup_8Bit_6800(u8x8_t *u8x8, u8x8_msg_cb display_cb, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t enable, uint8_t cs, uint8_t dc, uint8_t reset);
 //void u8x8_Setup_8Bit_8080(u8x8_t *u8x8, u8x8_msg_cb display_cb, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t wr, uint8_t cs, uint8_t dc, uint8_t reset);
 
-class U8X8
+class U8X8: public Print
 {
   protected:
     u8x8_t u8x8;
@@ -174,7 +175,7 @@ class U8X8
     uint8_t getUTF8Len(const char *s) {
       return u8x8_GetUTF8Len(&u8x8, s); }
     
-    size_t write(uint8_t v);
+    virtual size_t write(uint8_t v);
     /* code extended and moved to .cpp file, issue 74
     size_t write(uint8_t v) {
       u8x8_DrawGlyph(&u8x8, tx, ty, v);
@@ -183,11 +184,11 @@ class U8X8
      }
       */
      
-    size_t write(const uint8_t *buffer, size_t size) {
+    virtual size_t write(const uint8_t *buffer, size_t size) {
       size_t cnt = 0;
       while( size > 0 ) {
-	cnt += write(*buffer++); 
-	size--;
+        cnt += write(*buffer++); 
+        size--;
       }
       return cnt;
     }
@@ -218,12 +219,12 @@ class U8X8
     
 };
 
-class U8X8LOG
+class U8X8LOG: public Print
 {
-  
+
   public:
     u8log_t u8log;
-  
+
     /* the constructor does nothing, use begin() instead */
     U8X8LOG(void) { }
   
@@ -233,7 +234,7 @@ class U8X8LOG
       u8log_SetCallback(&u8log, u8log_u8x8_cb, u8x8.getU8x8());
       return true;
     }
-    
+
     /* disconnected version, manual redraw required */
     bool begin(uint8_t width, uint8_t height, uint8_t *buf) { 
       u8log_Init(&u8log, width, height, buf);  
@@ -246,20 +247,20 @@ class U8X8LOG
     void setRedrawMode(uint8_t is_redraw_line_for_each_char) {
       u8log_SetRedrawMode(&u8log, is_redraw_line_for_each_char); }
     
-    /* virtual function for print base class */    
-    size_t write(uint8_t v) {
+    /* virtual function for print base class */
+    virtual size_t write(uint8_t v) {
       u8log_WriteChar(&u8log, v);
       return 1;
      }
 
-    size_t write(const uint8_t *buffer, size_t size) {
+    virtual size_t write(const uint8_t *buffer, size_t size) {
       size_t cnt = 0;
       while( size > 0 ) {
-	cnt += write(*buffer++); 
-	size--;
+        cnt += write(*buffer++); 
+        size--;
       }
       return cnt;
-    }  
+    }
 
     void writeString(const char *s) { u8log_WriteString(&u8log, s); }
     void writeChar(uint8_t c) { u8log_WriteChar(&u8log, c); }

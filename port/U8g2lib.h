@@ -142,7 +142,12 @@ class U8G2: public Print
 
     /* u8g2  */
 
-      
+#ifdef U8G2_WITH_CLIP_WINDOW_SUPPORT
+    void setMaxClipWindow(void) { u8g2_SetMaxClipWindow(&u8g2); }
+    void setClipWindow(u8g2_uint_t clip_x0, u8g2_uint_t clip_y0, u8g2_uint_t clip_x1, u8g2_uint_t clip_y1) {
+      u8g2_SetClipWindow(&u8g2, clip_x0, clip_y0, clip_x1, clip_y1 ); }
+#endif /* U8G2_WITH_CLIP_WINDOW_SUPPORT */
+
     u8g2_uint_t getDisplayHeight(void) { return u8g2_GetDisplayHeight(&u8g2); }
     u8g2_uint_t getDisplayWidth(void) { return u8g2_GetDisplayWidth(&u8g2); }
 
@@ -308,15 +313,15 @@ uint8_t u8g2_UserInterfaceInputValue(u8g2_t *u8g2, const char *title, const char
     
 };
 
-class U8G2LOG
+class U8G2LOG: public Print
 {
-  
+
   public:
     u8log_t u8log;
-  
+
     /* the constructor does nothing, use begin() instead */
     U8G2LOG(void) { }
-  
+
     /* connect to u8g2, draw to u8g2 whenever required */
     bool begin(class U8G2 &u8g2, uint8_t width, uint8_t height, uint8_t *buf)  { 
       u8log_Init(&u8log, width, height, buf);      
@@ -329,20 +334,20 @@ class U8G2LOG
       u8log_Init(&u8log, width, height, buf);  
       return true;
     }
-    
+
     void setLineHeightOffset(int8_t line_height_offset) {
       u8log_SetLineHeightOffset(&u8log, line_height_offset); }
 
     void setRedrawMode(uint8_t is_redraw_line_for_each_char) {
       u8log_SetRedrawMode(&u8log, is_redraw_line_for_each_char); }
-    
-    /* virtual function for print base class */    
-    size_t write(uint8_t v) {
+
+    /* virtual function for print base class */
+    virtual size_t write(uint8_t v) {
       u8log_WriteChar(&u8log, v);
       return 1;
      }
 
-    size_t write(const uint8_t *buffer, size_t size) {
+    virtual size_t write(const uint8_t *buffer, size_t size) {
       size_t cnt = 0;
       while( size > 0 ) {
         cnt += write(*buffer++); 

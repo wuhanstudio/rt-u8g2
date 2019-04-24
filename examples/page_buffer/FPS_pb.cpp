@@ -17,7 +17,7 @@
 
   * Redistributions of source code must retain the above copyright notice, this list 
     of conditions and the following disclaimer.
-
+    
   * Redistributions in binary form must reproduce the above copyright notice, this 
     list of conditions and the following disclaimer in the documentation and/or other 
     materials provided with the distribution.
@@ -41,33 +41,33 @@
 ==============
   U8glib
 
-  ST7920_192X32, SPI:         FPS: Box=7.6   @=9.8                iFPS: Box=11.4  @=14.7
-  ST7920_192X32, 8Bit:        FPS: Box=6.2   @=7.5                iFPS: Box=9.3 @=11.2
-  DOGM128 SW SPI:             FPS: Box=5.1   @=5.9  Pix=2.6       iFPS: Box=10.2 @=11.8 Pix=5.2
-  DOGM128 HW SPI:             FPS: Box=5.5   @=6.3                iFPS: Box=11.0 @=12.6
-  DOGXL160 SW SPI:            FPS: Box=1.7   @=1.9                iFPS: Box=6.9 @=7.7
-  DOGXL160 HW SPI:            FPS: Box=1.8   @=2.1
+  ST7920_192X32, SPI:     FPS: Box=7.6   @=9.8                iFPS: Box=11.4  @=14.7
+  ST7920_192X32, 8Bit:    FPS: Box=6.2   @=7.5                iFPS: Box=9.3 @=11.2
+  DOGM128 SW SPI:         FPS: Box=5.1   @=5.9  Pix=2.6       iFPS: Box=10.2 @=11.8 Pix=5.2
+  DOGM128 HW SPI:         FPS: Box=5.5   @=6.3                iFPS: Box=11.0 @=12.6
+  DOGXL160 SW SPI:        FPS: Box=1.7   @=1.9               iFPS: Box=6.9 @=7.7
+  DOGXL160 HW SPI:        FPS: Box=1.8   @=2.1
 
-  NHD27OLED_BW, SW SPI:       FPS: Box=3.0  @=3.7
-  NHD27OLED_BW, HW SPI:       FPS: Box=3.5  @=4.5
-  NHD27OLED_2X_BW, SW SPI:    FPS: Box=3.8  @=4.9
-  NHD27OLED_2X_BW, HW SPI:    FPS: Box=4.6  @=6.4
+  NHD27OLED_BW, SW SPI: FPS: Box=3.0  @=3.7
+  NHD27OLED_BW, HW SPI: FPS: Box=3.5  @=4.5
+  NHD27OLED_2X_BW, SW SPI: FPS: Box=3.8  @=4.9
+  NHD27OLED_2X_BW, HW SPI: FPS: Box=4.6  @=6.4
 
   30 Sep 2012
-  NHD27OLED_BW, SW SPI:       FPS: Clip=9.2 Box=3.9   @=4.4        NEW_CODE
-  NHD27OLED_BW, SW SPI:       FPS: Clip=9.2 Box=3.6   @=4.5
-  NHD27OLED_BW, HW SPI:       FPS: Clip=16.3 Box=4.7  @=5.6
-  NHD27OLED_2X_BW, SW SPI:    FPS: Clip=9.7 Box=4.5   @=5.8
-  NHD27OLED_2X_BW, SW SPI:    FPS: Clip=18.0 Box=5.8  @=7.9
+  NHD27OLED_BW, SW SPI: FPS: Clip=9.2 Box=3.9  @=4.4    NEW_CODE
+  NHD27OLED_BW, SW SPI: FPS: Clip=9.2 Box=3.6  @=4.5
+  NHD27OLED_BW, HW SPI: FPS: Clip=16.3 Box=4.7  @=5.6
+  NHD27OLED_2X_BW, SW SPI: FPS: Clip=9.7 Box=4.5  @=5.8
+  NHD27OLED_2X_BW, SW SPI: FPS: Clip=18.0 Box=5.8  @=7.9
 
   1 Oct 2012
-  ST7920_192X32, 8Bit:        FPS: Box=7.2   @=10.0
-  DOGM128 SW SPI:             FPS: Box=5.2   @=6.6  Pix=2.6
-  DOGM128 HW SPI:             FPS: Clip=33.2 Box=5.5   @=7.1
-  DOGXL160 SW SPI:            FPS: Box=1.7   @=2.0
-  DOGXL160 HW SPI:            FPS: Box=1.8   @=2.2
+  ST7920_192X32, 8Bit:    FPS: Box=7.2   @=10.0
+  DOGM128 SW SPI:         FPS: Box=5.2   @=6.6  Pix=2.6
+  DOGM128 HW SPI:         FPS: Clip=33.2 Box=5.5   @=7.1
+  DOGXL160 SW SPI:        FPS: Box=1.7   @=2.0
+  DOGXL160 HW SPI:        FPS: Box=1.8   @=2.2
 
-  DOGXL160 GR SW SPI:         FPS: Box=1.1   @=1.3
+  DOGXL160 GR SW SPI:     FPS: Box=1.1   @=1.3
 
   1 Mar 2013
   ST7920_192X32_1X, SPI:      FPS: Clip=10.3 Box=5.5  @=7.2 Pix=3.9
@@ -81,96 +81,183 @@
   U8GLIB_DOGM128 SW SPI:      FPS: Clip=23.9 Box=4.5  @=6.6 Pix=2.1
   U8GLIB_DOGM128_2X SW SPI:   FPS: Clip=28.5 Box=6.6  @=9.7 Pix=3.9
   U8GLIB_DOGM128_2X HW SPI:   FPS: Clip=40.8 Box=7.1  @=10.8 Pix=4.1
-
+  
   3 Jun 2013
-  U8GLIB_ST7920_192X32_1X -Os    SW SPI    FPS: Clip=11.0 Box=5.4  @=7.1 Pix=3.9    Size=11828
-  U8GLIB_ST7920_192X32_1X -O3    SW SPI    FPS: Clip=10.9 Box=5.6  @=7.5 Pix=4.0    Size=13800
-  U8GLIB_ST7920_192X32_1X -Os    SW SPI    FPS: Clip=16.8 Box=6.7  @=9.6 Pix=4.5    Size=11858    (new seq data output)
-  U8GLIB_ST7920_192X32_1X -Os    HW SPI    FPS: Clip=25.7 Box=7.5  @=11.3 Pix=4.8    (new seq data output)
-
+  U8GLIB_ST7920_192X32_1X -Os  SW SPI  FPS: Clip=11.0 Box=5.4  @=7.1 Pix=3.9  Size=11828
+  U8GLIB_ST7920_192X32_1X -O3  SW SPI  FPS: Clip=10.9 Box=5.6  @=7.5 Pix=4.0  Size=13800
+  U8GLIB_ST7920_192X32_1X -Os  SW SPI  FPS: Clip=16.8 Box=6.7  @=9.6 Pix=4.5  Size=11858  (new seq data output)
+  U8GLIB_ST7920_192X32_1X -Os  HW SPI  FPS: Clip=25.7 Box=7.5  @=11.3 Pix=4.8  (new seq data output)
+  
   6 Jun 2013
-  U8GLIB_DOGS102 u8g(13, 11, 10, 9);    STD SW SPI  FPS: Clip=9.5 Box=7.6  @=8.2 Pix=6.2    Size=15652
-  U8GLIB_DOGS102 u8g(13, 11, 10, 9);    SW SPI      FPS: Clip=19.1 Box=12.8  @=14.0 Pix=9.2    Size=15532
+  U8GLIB_DOGS102 u8g(13, 11, 10, 9);    STD SW SPI  FPS: Clip=9.5 Box=7.6  @=8.2 Pix=6.2  Size=15652
+  U8GLIB_DOGS102 u8g(13, 11, 10, 9);    SW SPI          FPS: Clip=19.1 Box=12.8  @=14.0 Pix=9.2  Size=15532
 
 
   12 Jun 2013
-  SSD1351_128X128_332    SW SPI Clip=1.3 Box=0.7  @=0.9 Pix=0.4
-  SSD1351_128X128_332    HW SPI Clip=3.6 Box=1.1  @=1.5 Pix=0.5
+  SSD1351_128X128_332  SW SPI Clip=1.3 Box=0.7  @=0.9 Pix=0.4
+  SSD1351_128X128_332  HW SPI Clip=3.6 Box=1.1  @=1.5 Pix=0.5
 
   24 Jun 2013
-  Uno SSD1351_128X128_332                 SW SPI Clip=1.4 Box=0.8  @=0.9 Pix=0.4
+  Uno SSD1351_128X128_332               SW SPI Clip=1.4 Box=0.8  @=0.9 Pix=0.4
+  
+  Uno SSD1351_128X128_332               HW SPI Clip=4.4 Box=1.2  @=1.6 Pix=0.5
+  Uno SSD1351_128X128_HICOLOR           HW SPI Clip=3.7 Box=0.8  @=1.0 Pix=0.3
 
-  Uno SSD1351_128X128_332                 HW SPI Clip=4.4 Box=1.2  @=1.6 Pix=0.5
-  Uno SSD1351_128X128_HICOLOR             HW SPI Clip=3.7 Box=0.8  @=1.0 Pix=0.3
+  Mega2560 SSD1351_128X128_332          HW SPI Clip=4.4 Box=1.2  @=1.6 Pix=0.5
+  Mega2560 SSD1351_128X128_4X_332       HW SPI Clip=4.6 Box=2.3  @=2.8 Pix=1.5
+  Mega2560 SSD1351_128X128_HICOLOR      HW SPI Clip=3.6 Box=0.8  @=1.0 Pix=0.3
+  Mega2560 SSD1351_128X128_4X_HICOLOR   HW SPI Clip=4.2 Box=1.7  @=2.1 Pix=1.0
 
-  Mega2560 SSD1351_128X128_332            HW SPI Clip=4.4 Box=1.2  @=1.6 Pix=0.5
-  Mega2560 SSD1351_128X128_4X_332         HW SPI Clip=4.6 Box=2.3  @=2.8 Pix=1.5
-  Mega2560 SSD1351_128X128_HICOLOR        HW SPI Clip=3.6 Box=0.8  @=1.0 Pix=0.3
-  Mega2560 SSD1351_128X128_4X_HICOLOR     HW SPI Clip=4.2 Box=1.7  @=2.1 Pix=1.0
+  Due SSD1351_128X128_332               HW SPI Clip=24.6 Box=6.3  @=7.8 Pix=2.8
+  Due SSD1351_128X128_4X_332            HW SPI Clip=28.1 Box=13.0  @=15.1 Pix=8.5
+  Due SSD1351_128X128_HICOLOR           HW SPI Clip=20.8 Box=3.4  @=4.5 Pix=1.4
+  Due SSD1351_128X128_4X_HICOLOR        HW SPI Clip=26.3 Box=8.9  @=11.1 Pix=4.8
 
-  Due SSD1351_128X128_332                 HW SPI Clip=24.6 Box=6.3  @=7.8 Pix=2.8
-  Due SSD1351_128X128_4X_332              HW SPI Clip=28.1 Box=13.0  @=15.1 Pix=8.5
-  Due SSD1351_128X128_HICOLOR             HW SPI Clip=20.8 Box=3.4  @=4.5 Pix=1.4
-  Due SSD1351_128X128_4X_HICOLOR          HW SPI Clip=26.3 Box=8.9  @=11.1 Pix=4.8
+  Due SSD1351_128X128_4X_HICOLOR        SW SPI Clip=0.4 Box=0.4  @=0.4 Pix=0.4
 
-  Due SSD1351_128X128_4X_HICOLOR          SW SPI Clip=0.4 Box=0.4  @=0.4 Pix=0.4
+  Due DOGS102 u8g(13, 11, 10, 9);       SW SPI    FPS: Clip=19.1 Box=13.1  @=14.3 Pix=9.4
+  Due DOGS102 u8g(10, 9);               HW SPI    FPS: Clip=128.9 Box=30.7  @=40.6 Pix=15.4
 
-  Due DOGS102 u8g(13, 11, 10, 9);         SW SPI FPS: Clip=19.1 Box=13.1  @=14.3 Pix=9.4
-  Due DOGS102 u8g(10, 9);                 HW SPI FPS: Clip=128.9 Box=30.7  @=40.6 Pix=15.4
-
-  Due NHD27OLED_BW u8g(10, 9)             HW SPI FPS: Clip=53.0 Box=19.6  @=23.8 Pix=10.6
-  Due NHD27OLED_2X_BW u8g(10, 9)          HW SPI FPS: Clip=57.0 Box=25.3  @=31.7 Pix=18.1
-  Due NHD27OLED_GR u8g(10, 9)             HW SPI FPS: Clip=34.1 Box=11.7  @=13.7 Pix=5.6
-  Due NHD27OLED_2X_GR u8g(10, 9)          HW SPI FPS: Clip=38.1 Box=15.5  @=20.0 Pix=8.8
+  Due NHD27OLED_BW u8g(10, 9)           HW SPI    FPS: Clip=53.0 Box=19.6  @=23.8 Pix=10.6
+  Due NHD27OLED_2X_BW u8g(10, 9)        HW SPI    FPS: Clip=57.0 Box=25.3  @=31.7 Pix=18.1
+  Due NHD27OLED_GR u8g(10, 9)           HW SPI    FPS: Clip=34.1 Box=11.7  @=13.7 Pix=5.6
+  Due NHD27OLED_2X_GR u8g(10, 9)        HW SPI    FPS: Clip=38.1 Box=15.5  @=20.0 Pix=8.8
 
 
   28. Apr 2016
-  Uno DOGS102 u8g(13, 11, 10, 9);         SW SPI FPS: Clip=26.6 Box=6.1  @=8.5 Pix=2.8 11548 Bytes
-  Uno DOGS102 u8g(10, 9);                 HW SPI FPS: Clip=33.1 Box=6.4  @=9.1 Pix=2.9 11366 Bytes
+  Uno DOGS102 u8g(13, 11, 10, 9);       SW SPI          FPS: Clip=26.6 Box=6.1  @=8.5 Pix=2.8    11548 Bytes
+  Uno DOGS102 u8g(10, 9);               HW SPI          FPS: Clip=33.1 Box=6.4  @=9.1 Pix=2.9    11366 Bytes
 
 ==============
   U8g2
 
   28. Apr 2016
-  Uno DOGS102 u8g(13, 11, 10, 9);            SW SPI            FPS: Clip=3.0 Box=3.3  @=2.1 Pix=2.4        11472 Bytes
-  Uno DOGS102 u8g(10, 9);                    HW SPI            FPS: Clip=24.5 Box=87.4  @=5.0 Pix=7.3    11554 Bytes
+  Uno DOGS102 u8g(13, 11, 10, 9);       SW SPI          FPS: Clip=3.0 Box=3.3  @=2.1 Pix=2.4    11472 Bytes
+  Uno DOGS102 u8g(10, 9);               HW SPI          FPS: Clip=24.5 Box=87.4  @=5.0 Pix=7.3  11554 Bytes
 
   15. Mai 2016
-  Uno U8G2_UC1701_DOGS102_1_4W_SW_SPI        SW SPI            FPS: Clip=3.5 Box=3.8  @=2.3 Pix=2.7        Arduino Flash Size: 13262 Bytes
-  Uno U8G2_UC1701_DOGS102_1_4W_HW_SPI        HW SPI            FPS: Clip=26.3 Box=90.5  @=5.1 Pix=8.5    Arduino Flash Size: 13370 Bytes
-  Uno U8G2_UC1701_DOGS102_F_4W_HW_SPI        HW SPI            FPS: Clip=50.6 Box=119.6  @=9.4 Pix=15.7    Arduino Flash Size: 13370 Bytes
+  Uno U8G2_UC1701_DOGS102_1_4W_SW_SPI   SW SPI          FPS: Clip=3.5 Box=3.8  @=2.3 Pix=2.7    Arduino Flash Size: 13262 Bytes
+  Uno U8G2_UC1701_DOGS102_1_4W_HW_SPI   HW SPI          FPS: Clip=26.3 Box=90.5  @=5.1 Pix=8.5  Arduino Flash Size: 13370 Bytes
+  Uno U8G2_UC1701_DOGS102_F_4W_HW_SPI   HW SPI          FPS: Clip=50.6 Box=119.6  @=9.4 Pix=15.7  Arduino Flash Size: 13370 Bytes
 
   16. Mai 2016 (improved SW 4-Wire SPI)
-  Uno U8G2_UC1701_DOGS102_1_4W_SW_SPI        SW SPI            FPS: Clip=18.6 Box=42.2  @=4.7 Pix=7.7        
+  Uno U8G2_UC1701_DOGS102_1_4W_SW_SPI   SW SPI          FPS: Clip=18.6 Box=42.2  @=4.7 Pix=7.7    
 
   24. Mai 2016
-  Uno U8G2_ST7565_DOGM128_1_4W_SW_SPI        SW SPI            FPS: Clip=18.1 Box=35.8  @=3.9 Pix=6.2        
-  Uno U8G2_ST7565_DOGM128_1_4W_HW_SPI        HW SPI            FPS: Clip=25.4 Box=78.7  @=4.2 Pix=6.9        
+  Uno U8G2_ST7565_DOGM128_1_4W_SW_SPI   SW SPI          FPS: Clip=18.1 Box=35.8  @=3.9 Pix=6.2    
+  Uno U8G2_ST7565_DOGM128_1_4W_HW_SPI   HW SPI          FPS: Clip=25.4 Box=78.7  @=4.2 Pix=6.9    
 
-  18. Nov 2018
-  Uno U8G2_ST7920_128X64_F_HW_SPI            HW SPI 0.1MHz FPS: Clip=5.4 Box=5.4  @=3.6 Pix=4.2
-  Uno U8G2_ST7920_128X64_F_HW_SPI            HW SPI 1.0MHz     FPS: Clip=23.0 Box=22.8  @=7.4 Pix=10.4
-  Uno U8G2_ST7920_128X64_F_HW_SPI            HW SPI 1.8MHz FPS: Clip=23.0 Box=22.8  @=7.4 Pix=10.4
-  Uno U8G2_ST7920_128X64_F_SW_SPI            SW SPI        FPS: Clip=22.7 Box=21.0  @=7.1 Pix=9.6
-  Due U8G2_ST7920_128X64_F_SW_SPI            SW SPI        FPS: Clip=3.3 Box=3.2  @=3.1 Pix=3.1
-  Due U8G2_ST7920_128X64_F_SW_SPI            SW SPI        FPS: Clip=18.0 Box=17.8  @=13.5 Pix=14.6        Due optimized, 1000ns
+  25. June 2016
+  U8G2_SSD1306_128X64_NONAME_F_4W_HW_SPI  HW SPI    FPS: Clip=56.4 Box=114.1  @=8.6 Pix=12.9
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  HW SPI    FPS: Clip=27.7 Box=87.7  @=4.3 Pix=7.1
+
+  18. Aug 2016
+  U8G2_ST7920_128X64_1_HW_SPI        Uno      FPS: Clip=13.2 Box=11.5  @=3.7 Pix=5.9
+  U8G2_ST7920_128X64_1_SW_SPI        Uno      FPS: Clip=1.2 Box=1.2  @=0.9 Pix=1.1
   
-  20 Dec 2018
-  Uno U8G2_SSD1306_128X64_NONAME_F_SW_I2C    SW I2C        FPS: Clip=1.8 Box=1.9  @=1.6 Pix=1.7
-  Uno U8G2_SSD1306_128X64_NONAME_F_HW_I2C    HW I2C        FPS: Clip=17.3 Box=19.5  @=6.6 Pix=8.8        old SSD13xx cad procedure
-  Uno U8G2_SSD1306_128X64_NONAME_F_HW_I2C    HW I2C        FPS: Clip=18.0 Box=20.3  @=6.6 Pix=9.0        new SSD13xx cad procedure
-  Uno U8G2_SSD1306_128X64_NONAME_F_HW_I2C    HW I2C        FPS: Clip=18.3 Box=20.8  @=6.7 Pix=9.1        new SSD13xx cad procedure (lightning version)
+  U8G2_ST7920_128X64_1_SW_SPI        Due      FPS: Clip=3.1 Box=3.1  @=2.8 Pix=2.9
+  U8G2_ST7920_128X64_1_HW_SPI        Due      FPS: Clip=26.2 Box=25.8  @=13.9 Pix=15.3
+
+
+  U8G2_SSD1325_NHD_128X64_1_4W_HW_SPI    Uno      Clip=12.6 Box=19.1  @=3.6 Pix=5.8
+  U8G2_SSD1325_NHD_128X64_1_4W_HW_SPI    Uno      Clip=15.1 Box=23.3  @=3.6 Pix=5.8    with graphics acceleration
+
+  Issue #79:
+  U8G2_SSD1306_128X32_UNIVISION_1_HW_I2C Atmega32U8     Clip=15.7 Box=26.6  @=5.3 Pix=8.4
+
+  26.Nov 2016
+  U8G2_ST7920_128X64_1_8080        Uno          Clip=13.5 Box=12.1  @=3.6 Pix=5.9    atmega&arduino optimized
+  U8G2_ST7920_128X64_1_SW_SPI         Uno       Clip=13.2 Box=11.4  @=3.5 Pix=5.6      issue 87
+  U8G2_SSD1306_128X64_NONAME_1_4W_SW_SPI  Uno   Clip=21.7 Box=46.8  @=4.0 Pix=7.1      
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno   Clip=25.8 Box=84.2  @=4.2 Pix=7.8      
+  U8G2_SSD1306_128X64_NONAME_1_8080    Uno      Clip=16.1 Box=29.1  @=3.9 Pix=6.6    
+  U8G2_SSD1306_128X64_NONAME_1_6800    Uno      Clip=6.8 Box=8.4  @=2.9 Pix=4.3      6800 mode is not yet optimized for Atmega    
+  
+  7 Dec 2016
+  U8G2_KS0108_128X64_1           Uno            Clip=6.7 Box=8.2  @=2.9 Pix=4.3
+  
+  11 Dec 2016
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno   Clip=25.8 Box=84.2  @=4.2 Pix=7.8    Old: no pixel optimization
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno   Clip=25.9 Box=84.1  @=4.3 Pix=8.3    Pixel (len=1) optimization
+
+  14 Dec 2016
+  U8G2_KS0108_128X64_1           Uno            Clip=15.9 Box=28.0  @=3.9 Pix=6.9
+
+  31 Dec 2016
+  U8G2_LC7981_160X80_1_6800         Uno         Clip=3.3 Box=3.0  @=1.5 Pix=2.1
+
+  14 Jan 2017
+  U8G2_ST7920_128X64_1_HW_SPI         Uno       Clip=16.3 Box=20.2  @=4.1 Pix=7.2
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno   Clip=31.7 Box=77.2  @=4.7 Pix=8.9
+
+  11 Mar 2017
+  before 
+  U8G2_ST7920_128X64_1_SW_SPI         Uno      Clip=16.0 Box=18.5  @=4.0 Pix=6.8    issue 200
+  U8G2_ST7920_128X64_1_HW_SPI         Uno      Clip=16.3 Box=20.2  @=4.1 Pix=7.2    issue 200
+
+  after
+  U8G2_ST7920_128X64_1_SW_SPI         Uno      Clip=17.2 Box=20.2  @=4.1 Pix=7.0    issue 200
+  U8G2_ST7920_128X64_1_HW_SPI         Uno      Clip=17.4 Box=21.8  @=4.2 Pix=7.4    issue 200
+
+  14 May 2017, Arduino 1.8
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno  4MHz  Clip=31.7 Box=77.2  @=4.7 Pix=8.9    issue 215
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno  8MHz  Clip=32.9 Box=84.1  @=4.7 Pix=9.0    issue 215
+
+  U8G2_ST7565_EA_DOGM128_1_4W_HW_SPI      Uno  4MHz  Clip=32.0 Box=78.5  @=4.7 Pix=8.9    issue 215
+  
+  U8G2_SSD1322_NHD_256X64_1_4W_HW_SPI     Uno  8MHz 16 Bit  Clip=9.0 Box=10.7  @=2.0 Pix=3.0    issue 302 before optimization
+  U8G2_SSD1322_NHD_256X64_1_4W_HW_SPI     Uno  10MHz 16 Bit  Clip=10.9 Box=13.5  @=2.0 Pix=3.2  issue 302 after optimization (runs with 8MHz)
+  
+  U8G2_SSD1327_SEEED_96X96_1_HW_I2C       Uno      Clip=1.2 Box=1.2  @=0.9 Pix=1.0    issue 302 before optimization
+  U8G2_SSD1327_SEEED_96X96_1_HW_I2C       Uno      Clip=1.4 Box=1.4  @=1.0 Pix=1.2    issue 302 after optimization
+
+  U8G2_SSD1325_NHD_128X64_1_4W_HW_SPI    Uno      Clip=18.2 Box=25.1  @=4.0 Pix=6.7    issue 302 before optimization
+  U8G2_SSD1325_NHD_128X64_1_4W_HW_SPI    Uno      Clip=19.1 Box=28.3  @=4.1 Pix=7.2    issue 302 after optimization
+
+  15 Aug 2017, Arduino 1.8.3
+  U8G2_SSD1306_128X64_NONAME_1_HW_I2C    MKR Zero    Clip=20.8 Box=24.1  @=9.9 Pix=11.4
+
+  05 Sep 2017, Arduino 1.8,0 
+  U8G2_SH1106_128X64_NONAME_1_HW_I2C    Uno      Clip=13.6 Box=19.4  @=3.8 Pix=5.9
+
+  6 Oct 2017, Arduino 1.8.4
+  U8G2_SSD1306_128X64_NONAME_1_SW_I2C    EPS32    Clip=9.5 Box=9.6  @=8.9 Pix=9.1
+  U8G2_SSD1306_128X64_NONAME_1_HW_I2C    EPS32    Clip=30.5 Box=31.3  @=24.7 Pix=26.7
+
+  9 Mar 2018, Arduino 1.8.4, 16 Bit Mode
+  U8G2_ST75256_JLX256128_1_4W_SW_SPI    MKR Zero    Clip=2.0 Box=2.0  @=1.2 Pix=1.3
+  U8G2_ST75256_JLX256128_1_4W_HW_SPI    MKR Zero    Clip=30.3 Box=31.0  @=2.6 Pix=2.9
+
+  23 Apr 2018, Arduino 1.8.4, 8 Bit Mode
+  U8G2_SSD1306_128X64_NONAME_1_3W_SW_SPI   Uno      Clip=2.7 Box=2.9  @=1.8 Pix=2.2
+
+  29 Apr 2018, Arduino 1.8.4, 8 Bit Mode
+  U8G2_SSD1306_128X64_NONAME_1_SW_I2C    Uno      Clip=1.8 Box=1.9  @=1.4 Pix=1.6    issue 593, before optimization
+  U8G2_SSD1306_128X64_NONAME_1_SW_I2C    Uno      Clip=4.9 Box=5.3  @=2.6 Pix=3.6    issue 593, after optimization, however, disabled by default
+  
+  U8G2_SSD1306_128X64_NONAME_1_3W_SW_SPI   Uno      Clip=2.7 Box=2.9  @=1.8 Pix=2.2    issue 586, before optimization
+  U8G2_SSD1306_128X64_NONAME_1_3W_SW_SPI   Uno      Clip=23.4 Box=40.8  @=4.4 Pix=8.1  issue 586, after optimization
+
+
+  28 Oct 2018, Arduino 1.8.4, 8 Bit Mode
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno      Clip=34.0 Box=88.4  @=4.5 Pix=8.2  issue 364, clip window 
+
+  U8G2_SSD1306_128X32_UNIVISION_1_HW_I2C   Uno      Clip=28.4 Box=39.2  @=10.0 Pix=14.9  I2C default
+  U8G2_SSD1306_128X32_UNIVISION_1_HW_I2C   Uno      Clip=32.9 Box=48.3  @=10.5 Pix=16.1  I2C default, u8g2.setBusClock(600000UL)
+
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno      Clip=33.9 Box=88.2  @=4.5 Pix=8.2  SPI default speed      
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno      Clip=32.8 Box=80.6  @=4.5 Pix=8.2  SPI default speed  u8g2.setBusClock(6000000UL);
+  U8G2_SSD1306_128X64_NONAME_1_4W_HW_SPI  Uno      Clip=33.9 Box=88.2  @=4.5 Pix=8.2  SPI default speed  u8g2.setBusClock(9000000UL);
+
+  2 Dez 2018, Arduino 1.8.4
+  U8G2_UC1610_EA_DOGXL160_1_4W_SW_SPI    Due      Clip=15.8 Box=16.9  @=6.3 Pix=6.4
+  U8G2_UC1610_EA_DOGXL160_1_4W_SW_SPI    Due      Clip=17.6 Box=19.2  @=6.4 Pix=6.8  issue 749 (atomic writes)
+
 */
+
 
 #include <rtthread.h>
 #include <U8g2lib.h>
-
-/*
-  U8g2lib Example Overview:
-    Frame Buffer Examples: clearBuffer/sendBuffer. Fast, but may not work with all Arduino boards because of RAM consumption
-    Page Buffer Examples: firstPage/nextPage. Less RAM usage, should work with all Arduino boards.
-    U8x8 Text Only Example: No RAM usage, direct communication with display controller. No graphics, 8x8 Text only.
-*/
 
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
@@ -362,13 +449,14 @@ static U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ OLED_I2C_PI
 //static U8G2_LS027B7DH01_400X240_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ U8X8_PIN_NONE, /* reset=*/ 8);    // there is no DC line for this display
 //static U8G2_LS013B7DH05_144X168_F_4W_HW_SPI u8g2(U8G2_R0, /* cs=*/ 10, /* dc=*/ U8X8_PIN_NONE, /* reset=*/ 8);    // there is no DC line for this display
 
+
 // End of constructor list
 
 typedef u8g2_uint_t u8g_uint_t;
 
 #define SECONDS 10
-static uint8_t flip_color = 0;
-static uint8_t draw_color = 1;
+uint8_t flip_color = 0;
+uint8_t draw_color = 1;
 
 static void draw_set_screen(void) {
   // graphic commands to redraw the complete screen should be placed here  
@@ -382,15 +470,15 @@ static void draw_clip_test(void) {
   k = 0;
   u8g2.setColorIndex(draw_color);
   u8g2.setFont(u8g2_font_6x10_tf);
-
+  
   for( i = 0; i  < 6; i++ ) {
     for( j = 1; j  < 8; j++ ) {
       u8g2.drawHLine(i-3, k, j);
       u8g2.drawHLine(i-3+10, k, j);
-
+      
       u8g2.drawVLine(k+20, i-3, j);
       u8g2.drawVLine(k+20, i-3+10, j);
-
+      
       k++;
     }
   }
@@ -398,7 +486,7 @@ static void draw_clip_test(void) {
   u8g2.drawStr(0-3, 50, buf);
   u8g2.setFontDirection(2);
   u8g2.drawStr(0+3, 50, buf);
-
+  
   u8g2.setFontDirection(0);
   u8g2.drawStr(u8g2.getWidth()-3, 40, buf);
   u8g2.setFontDirection(2);
@@ -459,13 +547,8 @@ static void draw_pixel(void) {
   }
 }
 
-static void draw_line(void) {
-  u8g2.setColorIndex(draw_color);
-  u8g2.drawLine(0,0, u8g2.getWidth()-1, u8g2.getHeight()-1);
-}
-
 // returns unadjusted FPS
-static uint16_t execute_with_fps(void (*draw_fn)(void)) {
+static uint16_t picture_loop_with_fps(void (*draw_fn)(void)) {
   uint16_t FPS10 = 0;
   uint32_t time;
 
@@ -473,16 +556,17 @@ static uint16_t execute_with_fps(void (*draw_fn)(void)) {
 
   // picture loop
   do {
-    u8g2.clearBuffer();
-    draw_fn();
-    u8g2.sendBuffer();
+    u8g2.firstPage();
+    do {
+      draw_fn();
+    } while( u8g2.nextPage() );
     FPS10++;
     flip_color = flip_color ^ 1;
   } while( ((unsigned long)rt_tick_get() / RT_TICK_PER_SECOND * 1000) < time );
-  return FPS10;  
+  return FPS10;
 }
 
-static const char *convert_FPS(uint16_t fps) {
+const char *convert_FPS(uint16_t fps) {
   static char buf[6];
   strcpy(buf, u8g2_u8toa( (uint8_t)(fps/10), 3));
   buf[3] =  '.';
@@ -495,31 +579,50 @@ static void show_result(const char *s, uint16_t fps) {
   // assign default color value
   u8g2.setColorIndex(draw_color);
   u8g2.setFont(u8g2_font_8x13B_tf);
-  u8g2.firstPage();  
+  u8g2.firstPage();
   do {
     u8g2.drawStr(0,12, s);
     u8g2.drawStr(0,24, convert_FPS(fps));
   } while( u8g2.nextPage() );
 }
-static void u8g2_full_buffer_fps(int argc,char *argv[])
+
+#define THREAD_PRIORITY         25
+#define THREAD_STACK_SIZE       512
+#define THREAD_TIMESLICE        5
+
+static rt_thread_t tid1 = RT_NULL;
+
+static void u8g2_fps_entry(void *parameter)
 {
   u8g2.begin();
   draw_color = 1;         // pixel on
-  uint16_t fps;
-  fps = execute_with_fps(draw_clip_test);
-  show_result("draw clip test", fps);
-  rt_thread_mdelay(5000);
-  fps = execute_with_fps(draw_set_screen);
-  show_result("clear screen", fps);
-  rt_thread_mdelay(5000);
-  fps = execute_with_fps(draw_char);
-  show_result("draw @", fps);
-  rt_thread_mdelay(5000);  
-  fps = execute_with_fps(draw_pixel);
-  show_result("draw pixel", fps);
-  rt_thread_mdelay(5000);
-  fps = execute_with_fps(draw_line);
-  show_result("draw line", fps);
-  rt_thread_mdelay(5000);
+  while(1)
+  {
+    uint16_t fps;
+    fps = picture_loop_with_fps(draw_clip_test);
+    show_result("draw clip test", fps);
+    rt_thread_mdelay(5000);
+    fps = picture_loop_with_fps(draw_set_screen);
+    show_result("clear screen", fps);
+    rt_thread_mdelay(5000);
+    fps = picture_loop_with_fps(draw_char);
+    show_result("draw @", fps);
+    rt_thread_mdelay(5000);
+    fps = picture_loop_with_fps(draw_pixel);
+    show_result("draw pixel", fps);
+    rt_thread_mdelay(5000);
+  }
 }
-MSH_CMD_EXPORT(u8g2_full_buffer_fps, u8g2 full buffer FPS sample);
+
+static void u8g2_page_buffer_fps(int argc,char *argv[])
+{
+  tid1 = rt_thread_create("tu8g29",
+                          u8g2_fps_entry, RT_NULL,
+                          THREAD_STACK_SIZE,
+                          THREAD_PRIORITY, THREAD_TIMESLICE);
+
+  /* 如果获得线程控制块，启动这个线程 */
+  if (tid1 != RT_NULL)
+    rt_thread_startup(tid1);
+}
+MSH_CMD_EXPORT(u8g2_page_buffer_fps, u8g2 page buffer clip window sample);

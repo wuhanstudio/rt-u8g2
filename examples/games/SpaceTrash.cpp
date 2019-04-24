@@ -1680,7 +1680,7 @@ static void u8g2_game_space_trash_entry(void *parameter)
   }
 }
 
-static void u8g2_full_buffer_space_trash(int argc,char *argv[])
+static void u8g2_game_space_trash(int argc,char *argv[])
 {
   tid1 = rt_thread_create("tu8g22",
                           u8g2_game_space_trash_entry, RT_NULL,
@@ -1691,4 +1691,4 @@ static void u8g2_full_buffer_space_trash(int argc,char *argv[])
   if (tid1 != RT_NULL)
     rt_thread_startup(tid1);
 }
-MSH_CMD_EXPORT(u8g2_full_buffer_space_trash, u8g2 game space trash sample);
+MSH_CMD_EXPORT(u8g2_game_space_trash, u8g2 game space trash sample);
