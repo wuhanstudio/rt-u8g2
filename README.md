@@ -1,11 +1,9 @@
 ![u8g2 logo](u8g2_logo.png)
 # rt-u8g2 examples
 
-## 1、介绍
+## 0、介绍
 
-> 说明：单色显示屏驱动在 rt-thread 上的移植。 
-
-支持 SSD1305, SSD1306, SSD1309, SSD1322, SSD1325, SSD1327, SSD1329, SSD1606, SSD1607, SH1106, SH1107, SH1108, SH1122, T6963, RA8835, LC7981, PCD8544, PCF8812, HX1230, UC1601, UC1604, UC1608, UC1610, UC1611, UC1701, ST7565, ST7567, ST7588, ST75256, NT7534, IST3020, ST7920, LD7032, KS0108, SED1520, SBN1661, IL3820, MAX7219 等。
+u8g2 原先是 Arduino 平台上的一个单色屏驱动，现在移植到了 rt-thread，可以满足各种各种各样的需求。
 
 > 游戏开发 (examples/games/space_trash)
  
@@ -19,6 +17,58 @@
 
 ![](docs/page_buffer/graphic_test.gif)
 
+## 1、U8G2 特点
+
+#### 1.1 支持屏幕多，移植方便
+
+使用 u8g2 的好处在于它支持近 200 种单色屏，同样的代码可以直接运行在不同的屏幕上，比如前面的游戏可以在各种屏幕上运行：
+
+> 经典 128x64
+
+![](docs/8080.gif)
+
+> OLED SSD1306 I2C
+
+![](docs/games/space_trash.gif)
+
+在这里可以看到所有支持的屏幕：
+
+[https://github.com/olikraus/u8g2/wiki/gallery](https://github.com/olikraus/u8g2/wiki/gallery)
+
+#### 2.2 支持字体多
+
+> 中文
+
+![](docs/page_buffer/Chinese.jpg)
+
+> 韩文
+
+![](docs/page_buffer/Korean.jpg)
+
+> 日文
+
+![](docs/page_buffer/Japanese.jpg)
+
+> 梵文
+
+![](docs/page_buffer/Devanagari.jpg)
+
+#### 2.3 绘图函数多
+
+支持各种绘图函数，而且自带各种 icon
+
+![](docs/page_buffer/weather.gif)
+
+![](docs/page_buffer/clock.gif)
+
+总结一下 u8g2 的特点：  
+
+- 支持近 200 种单色屏，移植方便
+- 支持各种绘图函数、图像与非操作，自带用户按键检测
+- 支持 unicode 和 utf8，自带 100 多种字体和 100 多个 icon
+
+
+## 1、项目说明
 ### 1.1 目录结构
 
 > 说明：目录结构
@@ -50,7 +100,7 @@ Attribution-ShareAlike 3.0 Unported License.
 
 Check full LICENCE **[here](LICENSE)**.
 
-### 1.3 依赖
+### 1.3 项目依赖
 
 > 说明：如果使用 I2C 液晶屏需要开启 I2C，GPIO 模拟 I2C 。
 
@@ -68,9 +118,16 @@ Check full LICENCE **[here](LICENSE)**.
 	RT-Thread online packages
     	peripheral libraries and drivers --->
         	[*] U8G2: a u8g2 package for rt-thread
-
+                [*] Use hardware spi                                                                  
+                  (spi1)  spi bus name (NEW)              
+                  (spi10) spi device name (NEW)     
+                [*] Use hardware i2c          
+                  (i2c2)  i2c device name
+                U8G2 Examples  --->
 
 然后让 RT-Thread 的包管理器自动更新，或者使用 `pkgs --update` 命令更新包到 BSP 中。
+
+一共有50个例程，可以在源码 docs 目录下看到预览图。默认的例程都是用的软件I2C，如果觉得速度比较慢可以使用硬件I2C。
 
 ## 3、使用 U8G2
 
@@ -80,6 +137,8 @@ Check full LICENCE **[here](LICENSE)**.
 
 * 移植请参照 [`/port`](/port) 下
 * 完整的 API 手册可以访问这个[链接](https://github.com/olikraus/u8g2/wiki/u8g2reference)
+
+如果编译发现 flash 不够大，可以打开优化选项 -O3。
 
 ## 4、注意事项
 
