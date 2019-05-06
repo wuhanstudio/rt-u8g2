@@ -35,7 +35,7 @@ u8g2 原先是 Arduino 平台上的一个单色屏驱动，现在移植到了 rt
 
 [https://github.com/olikraus/u8g2/wiki/gallery](https://github.com/olikraus/u8g2/wiki/gallery)
 
-#### 2.2 支持字体多
+#### 1.2 支持字体多
 
 > 中文
 
@@ -53,7 +53,7 @@ u8g2 原先是 Arduino 平台上的一个单色屏驱动，现在移植到了 rt
 
 ![](docs/page_buffer/Devanagari.jpg)
 
-#### 2.3 绘图函数多
+#### 1.3 绘图函数多
 
 支持各种绘图函数，而且自带各种 icon
 
@@ -68,8 +68,8 @@ u8g2 原先是 Arduino 平台上的一个单色屏驱动，现在移植到了 rt
 - 支持 unicode 和 utf8，自带 100 多种字体和 100 多个 icon
 
 
-## 1、项目说明
-### 1.1 目录结构
+## 2、项目说明
+### 2.1 目录结构
 
 > 说明：目录结构
 
@@ -80,7 +80,7 @@ u8g2 原先是 Arduino 平台上的一个单色屏驱动，现在移植到了 rt
 | src  | 源代码目录 |
 | port | 针对特定平台的移植代码目录 |
 
-### 1.2 许可证
+### 2.2 许可证
 
 - The U8g2lib code (http://code.google.com/p/u8g2/) is licensed under the terms of 
 the new-bsd license (two-clause bsd license).  See also:  
@@ -100,7 +100,7 @@ Attribution-ShareAlike 3.0 Unported License.
 
 Check full LICENCE **[here](LICENSE)**.
 
-### 1.3 项目依赖
+### 2.3 项目依赖
 
 > 说明：如果使用 I2C 液晶屏需要开启 I2C，GPIO 模拟 I2C 。
 
@@ -111,7 +111,9 @@ Check full LICENCE **[here](LICENSE)**.
 
 - Using SPI Bus/Device device drivers
 
-## 2、如何打开 U8G2
+## 3、如何使用 U8G2
+
+#### 3.1 选择 u8g2
 
 使用 u8g2 package 需要在 RT-Thread 的包管理器中选择它，具体路径如下：
 
@@ -129,24 +131,19 @@ Check full LICENCE **[here](LICENSE)**.
 
 一共有50个例程，可以在源码 docs 目录下看到预览图。默认的例程都是用的软件I2C，如果觉得速度比较慢可以使用硬件I2C。
 
-## 3、使用 U8G2
+#### 3.2 编译运行
 
-> 说明： 如果使用的 bsp 是 STM32F10x 直接编译即可，参照[`/examples`](/examples/README.md)，其他平台请参照 [移植说明](port/README.md) 
+> 说明：如果直接使用的 rt-thread 应当不需要额外移植，其他平台请参照 [移植说明](port/README.md)，默认测试使用的 bsp 是 STM32F10x-HAL
 
-在打开 u8g2 package 后，当进行 bsp 编译时，它会被加入到 bsp 工程中进行编译。
-
-* 移植请参照 [`/port`](/port) 下
 * 完整的 API 手册可以访问这个[链接](https://github.com/olikraus/u8g2/wiki/u8g2reference)
-
-如果编译发现 flash 不够大，可以打开优化选项 -O3。
 
 ## 4、注意事项
 
-- 默测试认使用 STM32F10x，如果要使用到其他平台，请参照 [移植说明](port/README.md)。
-
-- 如果直接使用的 rt-thread 应当不需要额外移植。
+- 默测试认使用 STM32F10x-HAL，如果要使用到其他平台，请参照 [移植说明](port/README.md)。
 
 - 编译需要开启 -std=c99
+
+- 如果编译发现 flash 不够大，可以打开优化选项 -O3
 
 ## 5、感谢
 
