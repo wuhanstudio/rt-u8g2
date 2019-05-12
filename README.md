@@ -1,5 +1,5 @@
 ![u8g2 logo](u8g2_logo.png)
-# rt-u8g2 examples
+# rt-u8g2
 
 ## 0、介绍
 
