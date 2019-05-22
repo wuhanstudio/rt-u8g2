@@ -231,9 +231,9 @@ static void reset() {
 
 //Deteching Joystick Interaction
 static void keyPress(rt_uint8_t event) {
-  if (event != 0 )rt_kprintf("Key Event%d\n", event);
+  //if (event != 0 )rt_kprintf("Key Event%d\n", event);
   if ( menu && event!=0 /* && ignoreRepeat */) { //Any Input
-    rt_kprintf("Key Pressed %d\n", event);
+    //rt_kprintf("Key Pressed %d\n", event);
     //ignoreRepeat = false;
     reset();
     menu = false;
