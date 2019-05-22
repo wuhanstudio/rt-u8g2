@@ -9,6 +9,8 @@ u8g2 原先是 Arduino 平台上的一个单色屏驱动，现在移植到了 rt
  
 ![](docs/games/space_trash.gif)
 
+![](docs/games/trex.gif)
+
 > 用户界面 (examples/page_buffer/icon_menu)
 
 ![](docs/page_buffer/icon_menu.gif)
@@ -143,7 +145,7 @@ Check full LICENCE **[here](LICENSE)**.
 
 - 编译需要开启 -std=c99
 
-- 如果编译发现 flash 不够大，可以打开优化选项 -O3
+- 如果编译发现 flash 不够大，可以打开优化选项 -O3 或者参照 [这里](https://github.com/olikraus/u8g2/wiki/u8g2optimization) 去掉多余的字库
 
 ## 5、感谢
 

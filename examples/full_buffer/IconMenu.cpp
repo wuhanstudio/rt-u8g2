@@ -49,18 +49,29 @@
 
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
-#define U8G2_PIN_UP                         17      // PA3
-#define U8G2_PIN_DOWN                       20      // PA4
-#define U8G2_PIN_LEFT                       22      // PA6
-#define U8G2_PIN_RIGHT                      61      // PB8
-#define U8G2_PIN_SELECT                     57      // PB5
-#define U8G2_PIN_HOME                       27      // PB1
+#define U8G2_PIN_UP                         14      // PA3
+#define U8G2_PIN_DOWN                       40      // PA4
+#define U8G2_PIN_LEFT                       39      // PA6
+#define U8G2_PIN_RIGHT                      37      // PB8
+#define U8G2_PIN_SELECT                     U8X8_PIN_NONE      // PB5
+#define U8G2_PIN_HOME                       U8X8_PIN_NONE      // PB1
+
+#define OLED_SPI_PIN_CLK                   55  // PB3
+#define OLED_SPI_PIN_MOSI                  56  // PB4
+#define OLED_SPI_PIN_RES                   58  // PB6
+#define OLED_SPI_PIN_DC                    57  // PB5
+#define OLED_SPI_PIN_CS                    59  // PB7
+#define OLED_SPI_LIGHT			               61  // PB8
 
 #define OLED_I2C_PIN_SCL                    58      // PB6
 #define OLED_I2C_PIN_SDA                    59      // PB7
 
-static U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ OLED_I2C_PIN_SCL, /* data=*/ OLED_I2C_PIN_SDA, /* reset=*/ U8X8_PIN_NONE);   // All Boards without Reset of the Display
-
+static U8G2_ST7567_JLX12864_F_4W_SW_SPI u8g2(U8G2_R3, 
+                                            /* clock=*/ OLED_SPI_PIN_CLK, 
+                                            /* data=*/ OLED_SPI_PIN_MOSI, 
+                                            /* cs=*/ OLED_SPI_PIN_CS, 
+                                            /* dc=*/ OLED_SPI_PIN_DC, 
+                                            /* reset=*/ OLED_SPI_PIN_RES);
 // Please UNCOMMENT one of the contructor lines below
 // U8g2 Contructor List (Frame Buffer)
 // The complete list is available here: https://github.com/olikraus/u8g2/wiki/u8g2setupcpp
@@ -379,6 +390,7 @@ static void u8g2_icon_menu_entry(void *parameter)
 {
   u8g2.begin(/*Select=*/ U8G2_PIN_SELECT, /*Right/Next=*/ U8G2_PIN_RIGHT, /*Left/Prev=*/ U8G2_PIN_LEFT, /*Up=*/ U8G2_PIN_UP, /*Down=*/ U8G2_PIN_DOWN, /*Home/Cancel=*/ U8G2_PIN_HOME);
   u8g2.setFont(u8g2_font_6x12_tr);
+  u8g2.setContrast(128);
 
   while(1)
   {
