@@ -28,12 +28,12 @@ static U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0,
                                             /* dc=*/ OLED_SPI_PIN_DC, 
                                             /* reset=*/ OLED_SPI_PIN_RES);
 
-int random(int low, int high)
+static int random(int low, int high)
 {
   return rand() % (high - low + 1) + low;
 }
 
-unsigned long millis() {
+static unsigned long millis() {
     return ((unsigned long)rt_tick_get() / RT_TICK_PER_SECOND * 1000);
 }
 
@@ -67,12 +67,12 @@ unsigned long millis() {
 
 //----------Bitmap Arrays----------//
 
-const unsigned char smallcactus_bits[] =  {
+static const unsigned char smallcactus_bits[] =  {
   0x18, 0x18, 0x98, 0x98, 0x99, 0x99, 0x99, 0x99, 0x79, 0x19, 0x1e, 0x18,
   0x18, 0x18, 0x18, 0x18, 0x18
 };
 
-const unsigned char standing_bits[] = {
+static const unsigned char standing_bits[] = {
   0x00, 0xf8, 0x0f, 0x00, 0xcc, 0x1f, 0x00, 0xf8, 0x1f, 0x00, 0xfc, 0x1f,
   0x00, 0xf8, 0x1f, 0x00, 0xfc, 0x00, 0x00, 0xf8, 0x07, 0x01, 0x3e, 0x00,
   0x01, 0x7f, 0x00, 0xc3, 0xff, 0x01, 0xef, 0x7f, 0x00, 0xff, 0x7f, 0x00,
@@ -80,7 +80,7 @@ const unsigned char standing_bits[] = {
   0xe0, 0x0e, 0x00, 0x60, 0x04, 0x00, 0x20, 0x08, 0x00, 0x60, 0x08, 0x00
 };
 
-const unsigned char frontLeg_bits[] = {
+static const unsigned char frontLeg_bits[] = {
   0x00, 0xf0, 0x0f, 0x00, 0xdc, 0x1f, 0x00, 0xf8, 0x1f, 0x00, 0xf8, 0x1f,
   0x00, 0xf8, 0x1f, 0x00, 0xfc, 0x00, 0x00, 0xf8, 0x07, 0x01, 0x7e, 0x00,
   0x01, 0x7f, 0x00, 0xc3, 0xff, 0x01, 0xef, 0x7f, 0x01, 0xff, 0x7f, 0x00,
@@ -88,7 +88,7 @@ const unsigned char frontLeg_bits[] = {
   0xe0, 0x18, 0x00, 0xe0, 0x00, 0x00, 0x20, 0x00, 0x00, 0x60, 0x00, 0x00
 };
 
-const unsigned char backLeg_bits[] = {
+static const unsigned char backLeg_bits[] = {
   0x00, 0xf8, 0x0f, 0x00, 0xd8, 0x1f, 0x00, 0xfc, 0x1f, 0x00, 0xf8, 0x1f,
   0x00, 0xfc, 0x1f, 0x00, 0xf8, 0x00, 0x00, 0xfc, 0x07, 0x01, 0x3e, 0x00,
   0x01, 0x7f, 0x00, 0xc3, 0xff, 0x01, 0xef, 0x7f, 0x00, 0xff, 0x7f, 0x00,
@@ -96,7 +96,7 @@ const unsigned char backLeg_bits[] = {
   0x60, 0x0e, 0x00, 0xc0, 0x04, 0x00, 0x00, 0x08, 0x00, 0x00, 0x0c, 0x00
 };
 
-const unsigned char gameover_bits[] = {
+static const unsigned char gameover_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -137,7 +137,7 @@ const unsigned char gameover_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-const unsigned char easy_bits[] = {
+static const unsigned char easy_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80,
   0x00, 0x00, 0x00, 0xc0, 0xf0, 0x00, 0x00, 0xf0, 0x10, 0x00, 0x00, 0xfc,
   0x50, 0x6d, 0x09, 0xff, 0x10, 0x2c, 0xc5, 0xff, 0x10, 0x4b, 0x06, 0xff,
@@ -145,7 +145,7 @@ const unsigned char easy_bits[] = {
   0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-const unsigned char medium_bits[] = {
+static const unsigned char medium_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x22, 0x40, 0x01, 0x00, 0x66, 0x40, 0x00, 0x00,
   0xaa, 0x75, 0xd5, 0x0f, 0xda, 0x4f, 0x61, 0x08, 0x82, 0x48, 0x45, 0x09,
   0x42, 0x77, 0x5d, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -155,7 +155,7 @@ const unsigned char medium_bits[] = {
   0x00, 0xfc, 0x07, 0x00, 0x00, 0xfe, 0x0f, 0x00
 };
 
-const unsigned char hard_bits[] = {
+static const unsigned char hard_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
   0x07, 0x00, 0x00, 0x00, 0x1f, 0x40, 0x00, 0x20, 0x7f, 0x40, 0x04, 0x20,
   0xff, 0x41, 0xbb, 0x3b, 0xff, 0x43, 0x62, 0x24, 0xff, 0x41, 0x8c, 0x24,
@@ -163,7 +163,7 @@ const unsigned char hard_bits[] = {
   0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-const unsigned char insane_bits[] = {
+static const unsigned char insane_bits[] = {
   0x00, 0xfe, 0x0f, 0x00, 0x00, 0xfc, 0x07, 0x00, 0x00, 0xfc, 0x07, 0x00,
   0x00, 0xf8, 0x03, 0x00, 0x00, 0xf8, 0x03, 0x00, 0x00, 0xf0, 0x01, 0x00,
   0x00, 0xf0, 0x01, 0x00, 0x00, 0xe0, 0x00, 0x00, 0x00, 0xe0, 0x00, 0x00,
@@ -173,7 +173,7 @@ const unsigned char insane_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-const unsigned char menu_bits[] = {
+static const unsigned char menu_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
   0x07, 0x00, 0x00, 0x00, 0x1f, 0x10, 0x01, 0x00, 0x7f, 0x30, 0x01, 0x00,
   0xff, 0xb1, 0xdd, 0x25, 0xff, 0x53, 0x5d, 0x26, 0xff, 0x11, 0x44, 0x4a,
@@ -181,7 +181,7 @@ const unsigned char menu_bits[] = {
   0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-const unsigned char replay_bits[] = {
+static const unsigned char replay_bits[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80,
   0x00, 0x00, 0x00, 0xc0, 0x07, 0x20, 0x00, 0xf0, 0x09, 0x20, 0x00, 0xfc,
   0xe9, 0xae, 0x4b, 0xff, 0xe7, 0x32, 0xeb, 0xff, 0x15, 0xb2, 0x34, 0xff,
@@ -195,30 +195,29 @@ const unsigned char replay_bits[] = {
 //U8G2_ST7567_JLX12864_F_4W_SW_SPI u8g(U8G2_R0, 13, 11, 10, 9, 8);
 
 //----------Initializing Variables----------//
-unsigned long dinoTimeToMove = 0; //Used to space out time(millis) between draws/moves
-unsigned long dinoTimeToDraw = 0;
+static unsigned long dinoTimeToMove = 0; //Used to space out time(millis) between draws/moves
+static unsigned long dinoTimeToDraw = 0;
 
-int score;
-int highScore = 0;
-int multiplier; //Score multiplier
+static int score;
+static int highScore = 0;
+static int multiplier; //Score multiplier
 
-int input; //Joystick Input
 //bool ignoreRepeat = false; //Avoid Switch Bouncing
-long compensation; //To compensate for the amount of time the Arduino has been running for after each run (essentially "resets" the time)
-bool gameOver;
-bool menu = true;
+static long compensation; //To compensate for the amount of time the Arduino has been running for after each run (essentially "resets" the time)
+static bool gameOver;
+static bool menu = true;
 
-bool down, jump; //Boolean values to check the state of the dinosaur
-int dinoSwitch; //Switch between dino bitmaps to simulate movement
-int dinoY, cactiX1, cactiX2; //Positions of objects
-int velocity; //Speed of entire game
-int difficulty; //How fast the velocity increases
+static bool down, jump; //Boolean values to check the state of the dinosaur
+static int dinoSwitch; //Switch between dino bitmaps to simulate movement
+static int dinoY, cactiX1, cactiX2; //Positions of objects
+static int velocity; //Speed of entire game
+static int difficulty; //How fast the velocity increases
 
 
 //--------------------Functions--------------------//
 
 //Set/Reset Loop for Playing Again
-void reset() {
+static void reset() {
   compensation = millis();
   gameOver = false;
   down = false;
@@ -231,7 +230,7 @@ void reset() {
 }
 
 //Deteching Joystick Interaction
-void keyPress(rt_uint8_t event) {
+static void keyPress(rt_uint8_t event) {
   if (event != 0 )rt_kprintf("Key Event%d\n", event);
   if ( menu && event!=0 /* && ignoreRepeat */) { //Any Input
     rt_kprintf("Key Pressed %d\n", event);
@@ -260,7 +259,7 @@ void keyPress(rt_uint8_t event) {
 }
 
 //Collision Detecting and Setting HighScore
-void collision() {
+static void collision() {
   if ( cactiX1 <= 23 && cactiX1 + smallcactus_width >= 15 && dinoY + 20 >= 50 ) {
     if ( (millis() - compensation)*multiplier / 250 > highScore && !gameOver ) highScore = (millis() - compensation) * multiplier / 250; //Changes highscore if current score is greater
     gameOver = true;
@@ -269,7 +268,7 @@ void collision() {
 
 //-------Move Functions-------//
 
-void moveDino() {
+static void moveDino() {
   if ( dinoY > 44 ) dinoY = 44; //Resets dinosaur to it passes it
   if ( jump || dinoY <= 43 ) { //Allows jumping if on the ground
     jump = false;
@@ -281,7 +280,7 @@ void moveDino() {
   }
 }
 
-void moveCactus() {
+static void moveCactus() {
   cactiX1 -= velocity;
   cactiX2 -= velocity;
   if ( cactiX1 <= -15 ) { //Once cacti reaches left side of screen, resets to right side of screen
@@ -290,7 +289,7 @@ void moveCactus() {
   }
 }
 
-void moveObjects() {
+static void moveObjects() {
   if ( millis() > dinoTimeToMove + 50 ) { //Updates every 50 milliseconds
     velocity = (millis() - compensation) / difficulty + 2; //Increases velocity as game progresses
     moveDino();
@@ -299,7 +298,7 @@ void moveObjects() {
   }
 }
 
-void drawDinoCactus( ) {
+static void drawDinoCactus( ) {
   if ( dinoY < 44 ) u8g2.drawXBM(10, dinoY, standing_width, standing_height, standing_bits); //While jumping don't change bitmap
   else if ( (millis() - compensation) % 16 > 9 ) u8g2.drawXBM(10, dinoY, frontLeg_width, frontLeg_height, frontLeg_bits); //Switch between bitmaps every 9 millis
   else u8g2.drawXBM(10, dinoY, backLeg_width, backLeg_height, backLeg_bits);
@@ -307,7 +306,7 @@ void drawDinoCactus( ) {
   u8g2.drawXBM(cactiX2, 47, smallcactus_width, smallcactus_height, smallcactus_bits);
 }
 
-void drawScore() {
+static void drawScore() {
   char scoreBuff[50];
   if ( menu ) { //Print highscore on menu screen
     score = highScore;
@@ -321,21 +320,21 @@ void drawScore() {
 }
 
 //Draws Game Over Screen
-void playAgain() {
+static void playAgain() {
   u8g2.drawXBM(14, 14, gameover_width, gameover_height, gameover_bits);
   u8g2.drawXBM(23, 30, replay_width, replay_height, replay_bits);
   u8g2.drawXBM(70, 30, menu_width, menu_height, menu_bits);
 }
 
 //Draws Menu Screen
-void menuScreen() {
+static void menuScreen() {
   u8g2.drawXBM(26, 30, easy_width, easy_height, easy_bits);
   u8g2.drawXBM(49, 12, medium_width, medium_height, medium_bits);
   u8g2.drawXBM(69, 30, hard_width, hard_height, hard_bits);
   u8g2.drawXBM(49, 43, insane_width, insane_height, insane_bits);
 }
 
-void draw() {
+static void draw() {
   u8g2.clearBuffer();
   drawDinoCactus();
   drawScore();;

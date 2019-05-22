@@ -190,7 +190,7 @@ else:
 	if GetDepend('U8G2_USING_GAME_EXAMPLE_SPACE_TRASH'):
 		src    += Glob('examples/games/SpaceTrash.cpp')
 	if GetDepend('U8G2_USING_GAME_EXAMPLE_TREX'):
-		src    += Glob('examples/games/TRex.cpp.cpp')
+		src    += Glob('examples/games/TRex.cpp')
 
 path    = [cwd + '/']
 path   += [cwd + '/port']
