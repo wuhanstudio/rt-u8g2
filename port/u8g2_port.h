@@ -3,7 +3,9 @@
 
 #include <rtthread.h>
 #include <rtdevice.h>
-#include <drv_spi.h>
+#if defined U8G2_USE_HW_SPI
+    #include <drv_spi.h>
+#endif
 #include <src/u8g2.h>
 #include <src/u8x8.h>
 #include "Print.h"
