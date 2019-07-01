@@ -39,6 +39,8 @@ class Print
     int write_error;
     size_t printNumber(unsigned long, uint8_t);
     size_t printFloat(double, uint8_t);
+    int isnan(double x) { return x != x; };
+    int isinf(double x) { return !isnan(x) && isnan(x - x); };
   protected:
     void setWriteError(int err = 1) { write_error = err; }
   public:
