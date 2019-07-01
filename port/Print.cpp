@@ -23,7 +23,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
+// Use Self-defined isnan isinf in Print.h
+//#include <math.h>
 
 #include "Print.h"
 
