@@ -6,7 +6,7 @@
 u8g2 原先是 Arduino 平台上的一个单色屏驱动，现在移植到了 rt-thread，可以满足各种各种各样的需求。
 
 > 游戏开发 (examples/games/space_trash)
- 
+
 ![](docs/games/space_trash.gif)
 
 ![](docs/games/trex.gif)
@@ -94,9 +94,9 @@ derived from the WPZOOM Developer Icon Set. WPZOOM Developer Icon Set by WPZOOM 
 Attribution-ShareAlike 3.0 Unported License.  
 
 		http://www.wpzoom.com/wpzoom/new-freebie-wpzoom-developer-icon-set-154-free-icons/ 
- 
+
 - Fonts are licensed under different conditions.for detailed information on the licensing conditions for each font.
- 
+
 		https://github.com/olikraus/u8g2/wiki/fntgrp
 
 
@@ -104,48 +104,41 @@ Check full LICENCE **[here](LICENSE)**.
 
 ### 2.3 项目依赖
 
-> 说明：如果使用 I2C 液晶屏需要开启 I2C，GPIO 模拟 I2C 。
+说明：如果使用 I2C 液晶屏需要开启 I2C，GPIO 模拟 I2C 。
 
 - Using I2C device drivers
 - Use GPIO to simulate I2C
 
-> 说明：如果使用 SPI 液晶屏需要开启 SPI 。
+说明：如果使用 SPI 液晶屏需要开启 SPI 。
 
 - Using SPI Bus/Device device drivers
 
 ## 3、如何使用 U8G2
 
-#### 3.1 选择 u8g2
-
 使用 u8g2 package 需要在 RT-Thread 的包管理器中选择它，具体路径如下：
 
 	RT-Thread online packages
-    	peripheral libraries and drivers --->
-        	[*] U8G2: a u8g2 package for rt-thread
-                [*] Use hardware spi                                                                  
-                  (spi1)  spi bus name (NEW)              
-                  (spi10) spi device name (NEW)     
-                [*] Use hardware i2c          
-                  (i2c2)  i2c device name
-                U8G2 Examples  --->
+		peripheral libraries and drivers --->
+	    	[*] U8G2: a u8g2 package for rt-thread
+	            [*] Use hardware spi                                     
+	              (spi1)  spi bus name (NEW)              
+	              (spi10) spi device name (NEW)     
+	            [*] Use hardware i2c          
+	              (i2c2)  i2c device name
+	            U8G2 Examples  --->
 
 然后让 RT-Thread 的包管理器自动更新，或者使用 `pkgs --update` 命令更新包到 BSP 中。
 
 一共有50个例程，可以在源码 docs 目录下看到预览图。默认的例程都是用的软件I2C，如果觉得速度比较慢可以使用硬件I2C。
 
-#### 3.2 编译运行
-
-> 说明：如果直接使用的 rt-thread 应当不需要额外移植，其他平台请参照 [移植说明](port/README.md)，默认测试使用的 bsp 是 STM32F10x-HAL
-
-* 完整的 API 手册可以访问这个[链接](https://github.com/olikraus/u8g2/wiki/u8g2reference)
-
 ## 4、注意事项
 
-- 默测试认使用 STM32F10x-HAL，如果要使用到其他平台，请参照 [移植说明](port/README.md)。
-
+- 默测试认使用 STM32F103，如果要使用到其他平台，请参照 [移植说明](port/README.md)，不过只要用的 RT-Thread 应当不需要额外的移植。
+- 请使用 stm32 目录下的 bsp
 - 编译需要开启 -std=c99
-
 - 如果编译发现 flash 不够大，可以打开优化选项 -O3 或者参照 [这里](https://github.com/olikraus/u8g2/wiki/u8g2optimization) 去掉多余的字库
+- 完整的 API 手册可以访问这个 [链接](https://github.com/olikraus/u8g2/wiki/u8g2reference)
+- 其他 [常见问题 FAQ](https://github.com/wuhanstudio/rt-u8g2/issues)
 
 ## 5、感谢
 
