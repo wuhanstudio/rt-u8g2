@@ -6,9 +6,9 @@
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
 
-#define OLED_SPI_PIN_RES                    16  // PA2
-#define OLED_SPI_PIN_DC                     15  // PA1
-#define OLED_SPI_PIN_CS                     14  // PA0
+#define OLED_SPI_PIN_RES                     2  // PA2
+#define OLED_SPI_PIN_DC                      1  // PA1
+#define OLED_SPI_PIN_CS                      0  // PA0
 
 static void u8g2_ssd1306_12864_4wire_hw_spi_example(int argc,char *argv[])
 {

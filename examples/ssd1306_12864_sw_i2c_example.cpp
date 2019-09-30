@@ -5,8 +5,8 @@
 
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
-#define OLED_I2C_PIN_SCL                    58  // PB6
-#define OLED_I2C_PIN_SDA                    59  // PB7
+#define OLED_I2C_PIN_SCL                    22  // PB6
+#define OLED_I2C_PIN_SDA                    23  // PB7
 
 // Check https://github.com/olikraus/u8g2/wiki/u8g2setupcpp for all supported devices
 static U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, 

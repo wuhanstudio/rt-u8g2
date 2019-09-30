@@ -39,15 +39,15 @@
 
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
-#define U8G2_PIN_UP                         17      // PA3
-#define U8G2_PIN_DOWN                       20      // PA4
-#define U8G2_PIN_LEFT                       22      // PA6
-#define U8G2_PIN_RIGHT                      61      // PB8
-#define U8G2_PIN_SELECT                     57      // PB5
-#define U8G2_PIN_HOME                       27      // PB1
+#define U8G2_PIN_UP                          3      // PA3
+#define U8G2_PIN_DOWN                        4      // PA4
+#define U8G2_PIN_LEFT                        6      // PA6
+#define U8G2_PIN_RIGHT                      24      // PB8
+#define U8G2_PIN_SELECT                     21      // PB5
+#define U8G2_PIN_HOME                       17      // PB1
 
-#define OLED_I2C_PIN_SCL                    58      // PB6
-#define OLED_I2C_PIN_SDA                    59      // PB7
+#define OLED_I2C_PIN_SCL                    22  // PB6
+#define OLED_I2C_PIN_SDA                    23  // PB7
 
 static U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ OLED_I2C_PIN_SCL, /* data=*/ OLED_I2C_PIN_SDA, /* reset=*/ U8X8_PIN_NONE);   // All Boards without Reset of the Display
 

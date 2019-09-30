@@ -6,18 +6,18 @@
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
 
-#define ST7920_8080_PIN_D0                    36  // PB15
-#define ST7920_8080_PIN_D1                    35  // PB14
-#define ST7920_8080_PIN_D2                    34  // PB13
-#define ST7920_8080_PIN_D3                    33  // PB12
-#define ST7920_8080_PIN_D4                    37  // PC6
-#define ST7920_8080_PIN_D5                    38  // PC7
-#define ST7920_8080_PIN_D6                    39  // PC8
-#define ST7920_8080_PIN_D7                    40  // PC9
-#define ST7920_8080_PIN_EN                    50  // PA15
+#define ST7920_8080_PIN_D0                    31  // PB15
+#define ST7920_8080_PIN_D1                    30  // PB14
+#define ST7920_8080_PIN_D2                    29  // PB13
+#define ST7920_8080_PIN_D3                    28  // PB12
+#define ST7920_8080_PIN_D4                    38  // PC6
+#define ST7920_8080_PIN_D5                    39  // PC7
+#define ST7920_8080_PIN_D6                    40  // PC8
+#define ST7920_8080_PIN_D7                    41  // PC9
+#define ST7920_8080_PIN_EN                    15  // PA15
 #define ST7920_8080_PIN_CS                    U8X8_PIN_NONE
-#define ST7920_8080_PIN_DC                    44  // PA11
-#define ST7920_8080_PIN_RST                   45  // PA12
+#define ST7920_8080_PIN_DC                    11  // PA11
+#define ST7920_8080_PIN_RST                   12  // PA12
 
 void u8x8_SetPin_8Bit_8080(u8x8_t *u8x8, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t wr, uint8_t cs, uint8_t dc, uint8_t reset)
 {

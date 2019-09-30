@@ -49,22 +49,18 @@
 
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
-#define U8G2_PIN_UP                         14      // PA3
-#define U8G2_PIN_DOWN                       40      // PA4
-#define U8G2_PIN_LEFT                       39      // PA6
-#define U8G2_PIN_RIGHT                      37      // PB8
-#define U8G2_PIN_SELECT                     U8X8_PIN_NONE      // PB5
-#define U8G2_PIN_HOME                       U8X8_PIN_NONE      // PB1
+#define U8G2_PIN_UP                          3                  // PA3
+#define U8G2_PIN_DOWN                        4                  // PA4
+#define U8G2_PIN_LEFT                        6                  // PA6
+#define U8G2_PIN_RIGHT                      24                  // PB8
+#define U8G2_PIN_SELECT                     U8X8_PIN_NONE       // PB5
+#define U8G2_PIN_HOME                       U8X8_PIN_NONE       // PB1
 
-#define OLED_SPI_PIN_CLK                   55  // PB3
-#define OLED_SPI_PIN_MOSI                  56  // PB4
-#define OLED_SPI_PIN_RES                   58  // PB6
-#define OLED_SPI_PIN_DC                    57  // PB5
-#define OLED_SPI_PIN_CS                    59  // PB7
-#define OLED_SPI_LIGHT			               61  // PB8
-
-#define OLED_I2C_PIN_SCL                    58      // PB6
-#define OLED_I2C_PIN_SDA                    59      // PB7
+#define OLED_SPI_PIN_CLK                    19                  // PB3
+#define OLED_SPI_PIN_MOSI                   20                  // PB4
+#define OLED_SPI_PIN_RES                    22                  // PB6
+#define OLED_SPI_PIN_DC                     21                  // PB5
+#define OLED_SPI_PIN_CS                     23                  // PB7
 
 static U8G2_ST7567_JLX12864_F_4W_SW_SPI u8g2(U8G2_R3, 
                                             /* clock=*/ OLED_SPI_PIN_CLK, 

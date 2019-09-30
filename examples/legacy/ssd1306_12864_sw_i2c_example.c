@@ -3,8 +3,8 @@
 #include <rtdevice.h>
 #include <u8g2_port.h>
 
-#define OLED_I2C_PIN_SCL                    58  // PB6
-#define OLED_I2C_PIN_SDA                    59  // PB7
+#define OLED_I2C_PIN_SCL                    22  // PB6
+#define OLED_I2C_PIN_SDA                    23  // PB7
 
 static void u8g2_ssd1306_12864_sw_i2c_example(int argc,char *argv[])
 {
