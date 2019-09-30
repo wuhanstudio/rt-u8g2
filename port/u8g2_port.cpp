@@ -211,34 +211,6 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
             rt_pin_write(u8x8->pins[U8X8_PIN_RESET], arg_int);
             break;
 
-        case U8X8_MSG_GPIO_MENU_SELECT:
-            u8x8_SetGPIOResult(u8x8, 
-                               /* get menu select pin state */ 
-                               rt_pin_read(u8x8->pins[U8X8_PIN_MENU_SELECT]));
-            // rt_kprintf("Menu Select %d\n", rt_pin_read(u8x8->pins[U8X8_PIN_MENU_SELECT]));
-            break;
-
-        case U8X8_MSG_GPIO_MENU_NEXT:
-            u8x8_SetGPIOResult(u8x8, 
-                               /* get menu next pin state */ 
-                               rt_pin_read(u8x8->pins[U8X8_PIN_MENU_NEXT]));
-            // rt_kprintf("Menu Next %d\n", rt_pin_read(u8x8->pins[U8X8_PIN_MENU_NEXT]));
-            break;
-
-        case U8X8_MSG_GPIO_MENU_PREV:
-            u8x8_SetGPIOResult(u8x8, 
-                               /* get menu prev pin state */ 
-                               rt_pin_read(u8x8->pins[U8X8_PIN_MENU_PREV]));
-            // rt_kprintf("Menu Prev %d\n", rt_pin_read(u8x8->pins[U8X8_PIN_MENU_PREV]));
-            break;
-
-        case U8X8_MSG_GPIO_MENU_HOME:
-            u8x8_SetGPIOResult(u8x8, 
-                               /* get menu home pin state */ 
-                               rt_pin_read(u8x8->pins[U8X8_PIN_MENU_HOME]));
-            // rt_kprintf("Menu Home %d\n", rt_pin_read(u8x8->pins[U8X8_PIN_MENU_HOME]));
-            break;
-
         default:
             if ( msg >= U8X8_MSG_GPIO(0) )
             {
