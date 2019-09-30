@@ -11,10 +11,10 @@
 #define OLED_SPI_PIN_CS                      0  // PA0
 
 // Check https://github.com/olikraus/u8g2/wiki/u8g2setupcpp for all supported devices
-static U8G2_SSD1306_128X64_ALT0_F_4W_HW_SPI u8g2(U8G2_R0, 
-                                          /* cs=*/ OLED_SPI_PIN_CS, 
-                                          /* dc=*/ OLED_SPI_PIN_DC, 
-                                          /* reset=*/ OLED_SPI_PIN_RES);	
+static U8G2_SSD1306_128X64_ALT0_F_4W_HW_SPI u8g2(U8G2_R0,
+                                          /* cs=*/ OLED_SPI_PIN_CS,
+                                          /* dc=*/ OLED_SPI_PIN_DC,
+                                          /* reset=*/ OLED_SPI_PIN_RES);
                                           // same as the NONAME variant, but may solve the "every 2nd line skipped" problem
 
 static void u8g2_ssd1306_12864_4wire_hw_spi_example(int argc,char *argv[])

@@ -85,7 +85,7 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
         break;
 
         case U8X8_MSG_DELAY_MILLI:              // delay arg_int * 1 milli second
-            rt_thread_delay(arg_int);
+            rt_thread_mdelay(arg_int);
             break;
 
         case U8X8_MSG_GPIO_AND_DELAY_INIT:  

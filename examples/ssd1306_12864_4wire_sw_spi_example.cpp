@@ -13,11 +13,11 @@
 #define OLED_SPI_PIN_CS                     0  // PA0
 
 // Check https://github.com/olikraus/u8g2/wiki/u8g2setupcpp for all supported devices
-static U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0, 
-                                            /* clock=*/ OLED_SPI_PIN_CLK, 
-                                            /* data=*/ OLED_SPI_PIN_MOSI, 
-                                            /* cs=*/ OLED_SPI_PIN_CS, 
-                                            /* dc=*/ OLED_SPI_PIN_DC, 
+static U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0,\
+                                            /* clock=*/ OLED_SPI_PIN_CLK,\
+                                            /* data=*/ OLED_SPI_PIN_MOSI,\
+                                            /* cs=*/ OLED_SPI_PIN_CS,\
+                                            /* dc=*/ OLED_SPI_PIN_DC,\
                                             /* reset=*/ OLED_SPI_PIN_RES);
 
 static void u8g2_ssd1306_12864_4wire_sw_spi_example(int argc,char *argv[])
