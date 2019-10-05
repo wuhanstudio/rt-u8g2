@@ -4,7 +4,6 @@ import rtconfig
 # get current directory
 cwd     = GetCurrentDir()
 # The set of source files associated with this SConscript file.
-src     = Glob('inc/*.h')
 src     = Glob('src/*.c')
 src    += Glob('port/*.c')
 src    += Glob('port/*.cpp')
