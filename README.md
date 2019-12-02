@@ -148,4 +148,4 @@ Check full LICENCE **[here](LICENSE)**.
 
 * 维护：Wu Han
 * 主页：http://wuhanstudio.cc
-* 邮箱：wuhanstudio@hust.edu.cn
+* 联系：https://github.com/wuhanstudio/rt-u8g2/issues
