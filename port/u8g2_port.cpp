@@ -27,20 +27,15 @@ static struct rt_i2c_bus_device *i2c_bus = RT_NULL;
 
 #if defined U8G2_USE_HW_SPI
 static struct rt_spi_device u8g2_spi_dev;
-struct rt_hw_spi_cs
-{
-    rt_uint32_t pin;
-};
-static struct rt_hw_spi_cs spi_cs; 
 
 int rt_hw_spi_config(uint8_t spi_mode, uint32_t max_hz, uint8_t cs_pin )
 {
     rt_err_t res;
 
     // Attach Device
-    spi_cs.pin = cs_pin;
-    rt_pin_mode(spi_cs.pin, PIN_MODE_OUTPUT);
-    res = rt_spi_bus_attach_device(&u8g2_spi_dev, U8G2_SPI_DEVICE_NAME, U8G2_SPI_BUS_NAME, (void*)&spi_cs);
+    rt_pin_mode(cs_pin, PIN_MODE_OUTPUT);
+    // spi cs signal will be controlled directly using gpio
+    res = rt_spi_bus_attach_device(&u8g2_spi_dev, U8G2_SPI_DEVICE_NAME, U8G2_SPI_BUS_NAME, RT_NULL);
     if (res != RT_EOK)
     {
         rt_kprintf("[u8g2] Failed to attach device %s\n", U8G2_SPI_DEVICE_NAME);
@@ -335,27 +330,17 @@ uint8_t u8x8_byte_rt_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 #if defined U8G2_USE_HW_SPI
 uint8_t u8x8_byte_rt_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr) {
 
-    uint8_t i;
-    uint8_t *data;
-
-    uint8_t tx[256];
-    uint8_t rx[256];
-
-    static uint8_t buf_idx;
-    static uint8_t buffer_tx[256];
-
     switch(msg) 
     {
         case U8X8_MSG_BYTE_SEND:
-            data = (uint8_t *)arg_ptr;
-
-            while( arg_int > 0) 
-            {
-                buffer_tx[buf_idx++] = (uint8_t)*data;
-                rt_spi_send(&u8g2_spi_dev, (uint8_t*)data, 1);
-                data++;
-                arg_int--;
-            }
+            struct rt_spi_message spi_msg;
+            spi_msg.send_buf   = arg_ptr;
+            spi_msg.recv_buf   = RT_NULL;
+            spi_msg.length     = arg_int;
+            spi_msg.cs_take    = 0;
+            spi_msg.cs_release = 0;
+            spi_msg.next       = RT_NULL;
+            rt_spi_transfer_message(&u8g2_spi_dev, &spi_msg);
             break;
 
         case U8X8_MSG_BYTE_INIT:
@@ -373,22 +358,13 @@ uint8_t u8x8_byte_rt_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
             break;
 
         case U8X8_MSG_BYTE_START_TRANSFER:
-                      u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_enable_level);  
+            u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_enable_level);  
             u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_ns, NULL);
             break;
 
         case U8X8_MSG_BYTE_END_TRANSFER:
-            memset( tx, 0, ARRAY_SIZE(tx)*sizeof(uint8_t) );
-            memset( rx, 0, ARRAY_SIZE(rx)*sizeof(uint8_t) );
-
-            for (i = 0; i < buf_idx; ++i)
-            {
-                tx[i] = buffer_tx[i];
-            }
-
             u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->pre_chip_disable_wait_ns, NULL);
             u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
-            buf_idx = 0;
             break;
 
         default:
