@@ -193,6 +193,7 @@ else:
 
 path    = [cwd + '/']
 path   += [cwd + '/port']
+path   += [cwd + '/src']
 
 LOCAL_CCFLAGS = ''
 

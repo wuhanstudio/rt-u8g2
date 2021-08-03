@@ -28,4 +28,4 @@ static void u8g2_ssd1306_12864_4wire_hw_spi_example(int argc,char *argv[])
     u8g2.drawGlyph(112, 56, 0x2603 );
     u8g2.sendBuffer();
 }
-MSH_CMD_EXPORT(u8g2_ssd1306_12864_4wire_hw_spi_example, sw 4wire spi ssd1306 sample);
+MSH_CMD_EXPORT(u8g2_ssd1306_12864_4wire_hw_spi_example, hw 4wire spi ssd1306 sample);
