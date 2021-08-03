@@ -11,6 +11,7 @@
     #include <drv_spi.h>
 #endif
 
+#include <string.h>
 #include <u8g2.h>
 #include <u8x8.h>
 

@@ -8,7 +8,7 @@ src     = Glob('src/*.c')
 src    += Glob('port/*.c')
 src    += Glob('port/*.cpp')
 
-if(GetDepend('PKG_USING_U8G2_V100') or GetDepend('PKG_USING_U8G2_V110') or GetDepend('PKG_USING_U8G2_V120')):
+if(not GetDepend('U8G2_USE_CPP')):
 
 	if GetDepend('U8G2_USING_SW_I2C_SSD1306'):
 		src    += Glob('examples/legacy/ssd1306_12864_sw_i2c_example.c')

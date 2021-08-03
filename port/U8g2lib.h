@@ -48,8 +48,9 @@
 #include <u8g2.h>
 #include "U8x8lib.h"
 #include "u8g2_port.h"
+#include "Print.h"
 
-class U8G2
+class U8G2: public Print
 {
   protected:
     u8g2_t u8g2;
@@ -313,7 +314,7 @@ uint8_t u8g2_UserInterfaceInputValue(u8g2_t *u8g2, const char *title, const char
     
 };
 
-class U8G2LOG
+class U8G2LOG: public Print
 {
 
   public:
