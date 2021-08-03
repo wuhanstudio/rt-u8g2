@@ -46,10 +46,9 @@
 
 #include <rtthread.h>
 #include <src/u8g2.h>
-#include "Print.h"
 #include "u8g2_port.h"
 
-class U8G2: public Print
+class U8G2
 {
   protected:
     u8g2_t u8g2;
@@ -313,7 +312,7 @@ uint8_t u8g2_UserInterfaceInputValue(u8g2_t *u8g2, const char *title, const char
     
 };
 
-class U8G2LOG: public Print
+class U8G2LOG
 {
 
   public:
