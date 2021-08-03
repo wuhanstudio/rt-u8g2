@@ -35,11 +35,22 @@ int rt_hw_spi_config(uint8_t spi_mode, uint32_t max_hz, uint8_t cs_pin )
     // Attach Device
     rt_pin_mode(cs_pin, PIN_MODE_OUTPUT);
     // spi cs signal will be controlled directly using gpio
-    res = rt_spi_bus_attach_device(&u8g2_spi_dev, U8G2_SPI_DEVICE_NAME, U8G2_SPI_BUS_NAME, RT_NULL);
-    if (res != RT_EOK)
+    if(u8g2_spi_dev.bus == RT_NULL)
     {
-        rt_kprintf("[u8g2] Failed to attach device %s\n", U8G2_SPI_DEVICE_NAME);
-        return res;
+        res = rt_spi_bus_attach_device(&u8g2_spi_dev, U8G2_SPI_DEVICE_NAME, U8G2_SPI_BUS_NAME, RT_NULL);
+        if (res != RT_EOK)
+        {
+            rt_kprintf("[u8g2] Failed to attach device %s\n", U8G2_SPI_DEVICE_NAME);
+            return res;
+        }
+        else
+        {
+            rt_kprintf("[u8g2] Attach device to %s\n", U8G2_SPI_DEVICE_NAME);
+        }
+    }
+    else
+    {
+        rt_kprintf("[u8g2] Found device %s\n", U8G2_SPI_DEVICE_NAME);
     }
 
     // Set device SPI Mode
