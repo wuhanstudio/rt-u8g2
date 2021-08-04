@@ -40,7 +40,7 @@ static void u8g2_st7920_12864_8080_example(int argc,char *argv[])
     u8g2_t u8g2;
 
     // Initialization
-    u8g2_Setup_st7920_p_128x64_f(&u8g2, U8G2_R0, u8x8_byte_8bit_8080mode, u8x8_rt_gpio_and_delay);
+    u8g2_Setup_st7920_p_128x64_f(&u8g2, U8G2_R0, u8x8_byte_8bit_8080mode, u8x8_gpio_and_delay_rtthread);
     u8x8_SetPin_8Bit_8080(u8g2_GetU8x8(&u8g2), 
                           ST7920_8080_PIN_D0, ST7920_8080_PIN_D1, 
                           ST7920_8080_PIN_D2, ST7920_8080_PIN_D3, 
