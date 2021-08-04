@@ -52,7 +52,7 @@ int rt_hw_spi_config(uint8_t spi_mode, uint32_t max_hz, uint8_t cs_pin )
 }
 #endif /* U8G2_USE_HW_SPI */
 
-uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+uint8_t u8x8_gpio_and_delay_rtthread(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
     uint8_t i;
     switch(msg)
@@ -227,7 +227,7 @@ uint8_t u8x8_rt_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
 }
 
 #if defined U8G2_USE_HW_I2C
-uint8_t u8x8_byte_rt_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+uint8_t u8x8_byte_rtthread_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
     /* u8g2/u8x8 will never send more than 32 bytes between START_TRANSFER and END_TRANSFER */
     struct rt_i2c_msg msgs;
@@ -293,7 +293,7 @@ uint8_t u8x8_byte_rt_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 #endif /* U8G2_USE_HW_I2C */
 
 #if defined U8G2_USE_HW_SPI
-uint8_t u8x8_byte_rt_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr) {
+uint8_t u8x8_byte_rtthread_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr) {
     struct rt_spi_message spi_msg;
     switch(msg) 
     {

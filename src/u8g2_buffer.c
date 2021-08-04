@@ -180,6 +180,10 @@ void u8g2_UpdateDisplay(u8g2_t *u8g2)
   u8g2_send_buffer(u8g2);
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> e8dd0c39e81ddfc9a54c69e1582de6fdacaf80a1
 /*============================================*/
 
 /* vertical_top memory architecture */
@@ -197,7 +201,11 @@ void u8g2_WriteBufferXBM(u8g2_t *u8g2, void (*out)(const char *s))
 
 
 /* horizontal right memory architecture */
+<<<<<<< HEAD
+/* SH1122, LD7032, ST7920, ST7986, LC7981, T6963, SED1330, RA8835, MAX7219, LS0 */ 
+=======
 /* SH1122, LD7032, ST7920, ST7986, LC7981, T6963, SED1330, RA8835, MAX7219, LS0 */
+>>>>>>> e8dd0c39e81ddfc9a54c69e1582de6fdacaf80a1
 void u8g2_WriteBufferPBM2(u8g2_t *u8g2, void (*out)(const char *s))
 {
   u8x8_capture_write_pbm_pre(u8g2_GetBufferTileWidth(u8g2), u8g2_GetBufferTileHeight(u8g2), out);
