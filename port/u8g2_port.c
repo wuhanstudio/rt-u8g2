@@ -234,7 +234,7 @@ uint8_t u8x8_byte_rtthread_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, vo
     static uint8_t buffer[32];
     static uint8_t buf_idx;
     uint8_t *data;
-    
+
     rt_uint8_t t = 0;
     switch(msg)
     {
