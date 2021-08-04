@@ -46,19 +46,16 @@
 
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
-#define OLED_SPI_PIN_CLK                    5  // PA5
-#define OLED_SPI_PIN_MOSI                   7  // PA7
-#define OLED_SPI_PIN_RES                    2  // PA2
-#define OLED_SPI_PIN_DC                     1  // PA1
-#define OLED_SPI_PIN_CS                     0  // PA0
+#define OLED_SPI_PIN_RES                     2  // PA2
+#define OLED_SPI_PIN_DC                      1  // PA1
+#define OLED_SPI_PIN_CS                      0  // PA0
 
 // Check https://github.com/olikraus/u8g2/wiki/u8g2setupcpp for all supported devices
-static U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0,\
-                                            /* clock=*/ OLED_SPI_PIN_CLK,\
-                                            /* data=*/ OLED_SPI_PIN_MOSI,\
-                                            /* cs=*/ OLED_SPI_PIN_CS,\
-                                            /* dc=*/ OLED_SPI_PIN_DC,\
-                                            /* reset=*/ OLED_SPI_PIN_RES);
+static U8G2_SSD1306_128X64_NONAME_F_4W_HW_SPI u8g2(U8G2_R0,
+                                          /* cs=*/ OLED_SPI_PIN_CS,
+                                          /* dc=*/ OLED_SPI_PIN_DC,
+                                          /* reset=*/ OLED_SPI_PIN_RES);
+                                          // same as the NONAME variant, but may solve the "every 2nd line skipped" problem
 
 // Please UNCOMMENT one of the contructor lines below
 // U8g2 Contructor List (Frame Buffer)

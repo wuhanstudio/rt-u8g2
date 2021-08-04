@@ -3,10 +3,13 @@ import rtconfig
 
 # get current directory
 cwd     = GetCurrentDir()
+
 # The set of source files associated with this SConscript file.
 src     = Glob('src/*.c')
 src    += Glob('port/*.c')
-src    += Glob('port/*.cpp')
+
+if(GetDepend('U8G2_USE_CPP')):
+	src    += Glob('port/*.cpp')
 
 if(not GetDepend('U8G2_USE_CPP')):
 
