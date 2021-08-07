@@ -196,7 +196,7 @@ static const unsigned char replay_bits[] = {
 
 //----------Initializing Variables----------//
 static unsigned long dinoTimeToMove = 0; //Used to space out time(millis) between draws/moves
-static unsigned long dinoTimeToDraw = 0;
+//static unsigned long dinoTimeToDraw = 0;
 
 static int score;
 static int highScore = 0;
@@ -358,7 +358,7 @@ static void u8g2_trex_entry(void *parameter)
 }
 
 #define THREAD_PRIORITY         25
-#define THREAD_STACK_SIZE       512
+#define THREAD_STACK_SIZE       1024
 #define THREAD_TIMESLICE        5
 
 static rt_thread_t tid1 = RT_NULL;

@@ -45,10 +45,19 @@
 #define U8G2_PIN_SELECT                     21      // PB5
 #define U8G2_PIN_HOME                       17      // PB1
 
-#define OLED_I2C_PIN_SCL                    22      // PB6
-#define OLED_I2C_PIN_SDA                    23      // PB7
+#define OLED_SPI_PIN_CLK                    5  // PA5
+#define OLED_SPI_PIN_MOSI                   7  // PA7
+#define OLED_SPI_PIN_RES                    2  // PA2
+#define OLED_SPI_PIN_DC                     1  // PA1
+#define OLED_SPI_PIN_CS                     0  // PA0
 
-static U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ OLED_I2C_PIN_SCL, /* data=*/ OLED_I2C_PIN_SDA, /* reset=*/ U8X8_PIN_NONE);   // All Boards without Reset of the Display
+// Check https://github.com/olikraus/u8g2/wiki/u8g2setupcpp for all supported devices
+static U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0,\
+                                            /* clock=*/ OLED_SPI_PIN_CLK,\
+                                            /* data=*/ OLED_SPI_PIN_MOSI,\
+                                            /* cs=*/ OLED_SPI_PIN_CS,\
+                                            /* dc=*/ OLED_SPI_PIN_DC,\
+                                            /* reset=*/ OLED_SPI_PIN_RES);
 
 // Please UNCOMMENT one of the contructor lines below
 // U8g2 Contructor List (Frame Buffer)
@@ -525,25 +534,25 @@ const uint8_t st_bitmap_gadget[] =
 /*================================================================*/
 /* forward definitions */
 /*================================================================*/
-uint8_t st_rnd(void) U8X8_NOINLINE;
+static uint8_t st_rnd(void) U8X8_NOINLINE;
 static st_obj *st_GetObj(uint8_t objnr) U8X8_NOINLINE;
-uint8_t st_GetMissleMask(uint8_t objnr);
-uint8_t st_GetHitMask(uint8_t objnr);
-int8_t st_FindObj(uint8_t ot) U8X8_NOINLINE;
-void st_ClrObjs(void) U8X8_NOINLINE;
-int8_t st_NewObj(void) U8X8_NOINLINE;
-uint8_t st_CntObj(uint8_t ot);
-uint8_t st_CalcXY(st_obj *o) U8X8_NOINLINE;
-void st_SetXY(st_obj *o, uint8_t x, uint8_t y) U8X8_NOINLINE;
+static uint8_t st_GetMissleMask(uint8_t objnr);
+static uint8_t st_GetHitMask(uint8_t objnr);
+static int8_t st_FindObj(uint8_t ot) U8X8_NOINLINE;
+static void st_ClrObjs(void) U8X8_NOINLINE;
+static int8_t st_NewObj(void) U8X8_NOINLINE;
+//static uint8_t st_CntObj(uint8_t ot);
+static uint8_t st_CalcXY(st_obj *o) U8X8_NOINLINE;
+static void st_SetXY(st_obj *o, uint8_t x, uint8_t y) U8X8_NOINLINE;
 
-void st_FireStep(uint8_t is_auto_fire, uint8_t is_fire) U8X8_NOINLINE;
+static void st_FireStep(uint8_t is_auto_fire, uint8_t is_fire) U8X8_NOINLINE;
 
-void st_InitTrash(uint8_t x, uint8_t y, int8_t dir);
-void st_NewGadget(uint8_t x, uint8_t y);
-void st_NewPlayerMissle(uint8_t x, uint8_t y) ;
-void st_NewTrashDust(uint8_t x, uint8_t y, int ot);
-void st_NewTrashDustAreaArgs(int16_t x, int16_t y, int ot); 
-void st_SetupPlayer(uint8_t objnr, uint8_t ot);
+static void st_InitTrash(uint8_t x, uint8_t y, int8_t dir);
+static void st_NewGadget(uint8_t x, uint8_t y);
+static void st_NewPlayerMissle(uint8_t x, uint8_t y) ;
+static void st_NewTrashDust(uint8_t x, uint8_t y, int ot);
+static void st_NewTrashDustAreaArgs(int16_t x, int16_t y, int ot);
+static void st_SetupPlayer(uint8_t objnr, uint8_t ot);
 
 
 /*================================================================*/
@@ -643,17 +652,17 @@ static int8_t st_NewObj(void)
   st_CntObj(0) will return the number of empty objects, that means if
   st_CntObj(0) > 0 then st_NewObj() will return  a valid index
 */
-static uint8_t st_CntObj(uint8_t ot)
-{
-  uint8_t i;
-  uint8_t cnt = 0;
-  for( i = 0; i < ST_OBJ_CNT; i++ )
-  {
-    if ( st_objects[i].ot == ot )
-      cnt++;
-  }
-  return cnt;
-}
+//static uint8_t st_CntObj(uint8_t ot)
+//{
+//  uint8_t i;
+//  uint8_t cnt = 0;
+//  for( i = 0; i < ST_OBJ_CNT; i++ )
+//  {
+//    if ( st_objects[i].ot == ot )
+//      cnt++;
+//  }
+//  return cnt;
+//}
 
 /*
   calculate the pixel coordinates of the reference point of an object
@@ -677,7 +686,7 @@ static void st_SetXY(st_obj *o, uint8_t x, uint8_t y)
 /*
   calculate the object bounding box and place it into some global variables
 */
-static int16_t st_bbox_x0, st_bbox_y0, st_bbox_x1, st_bbox_y1;  
+static int16_t st_bbox_x0, st_bbox_y0, st_bbox_x1, st_bbox_y1;
 
 static void st_CalcBBOX(uint8_t objnr)
 {
@@ -1648,7 +1657,7 @@ static void st_Step(uint8_t player_pos, uint8_t is_auto_fire, uint8_t is_fire)
 static uint8_t y = 128;
 
 #define THREAD_PRIORITY         25
-#define THREAD_STACK_SIZE       512
+#define THREAD_STACK_SIZE       1024
 #define THREAD_TIMESLICE        5
 
 static rt_thread_t tid1 = RT_NULL;

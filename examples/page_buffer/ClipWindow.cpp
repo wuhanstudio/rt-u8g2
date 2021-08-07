@@ -241,7 +241,7 @@ static U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ OLED_I2C_PI
 
 
 #define THREAD_PRIORITY         25
-#define THREAD_STACK_SIZE       512
+#define THREAD_STACK_SIZE       1024
 #define THREAD_TIMESLICE        5
 
 static rt_thread_t tid1 = RT_NULL;
@@ -279,7 +279,6 @@ static void u8g2_page_buffer_clip_window(int argc,char *argv[])
                           THREAD_STACK_SIZE,
                           THREAD_PRIORITY, THREAD_TIMESLICE);
 
-  /* 如果获得线程控制块，启动这个线程 */
   if (tid1 != RT_NULL)
     rt_thread_startup(tid1);
 }

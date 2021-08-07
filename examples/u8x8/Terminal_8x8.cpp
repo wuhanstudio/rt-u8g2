@@ -36,7 +36,7 @@
 */
 
 #include <rtthread.h>
-#include <u8g2_port.h>
+#include <U8x8lib.h>
 
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 
@@ -213,7 +213,7 @@ static U8X8LOG u8x8log;
 static unsigned long t = 0;
 
 #define THREAD_PRIORITY         25
-#define THREAD_STACK_SIZE       512
+#define THREAD_STACK_SIZE       1024
 #define THREAD_TIMESLICE        5
 
 static rt_thread_t tid1 = RT_NULL;
@@ -244,7 +244,6 @@ static void u8g2_u8x8_terminal(int argc,char *argv[])
                           THREAD_STACK_SIZE,
                           THREAD_PRIORITY, THREAD_TIMESLICE);
 
-  /* 如果获得线程控制块，启动这个线程 */
   if (tid1 != RT_NULL)
     rt_thread_startup(tid1);
 }

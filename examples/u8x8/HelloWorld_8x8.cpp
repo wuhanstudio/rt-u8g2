@@ -36,7 +36,7 @@
 */
 
 #include <rtthread.h>
-#include <u8g2_port.h>
+#include <U8x8lib.h>
 
 // You may reference Drivers/drv_gpio.c for pinout
 // In u8x8.h #define U8X8_USE_PINS 

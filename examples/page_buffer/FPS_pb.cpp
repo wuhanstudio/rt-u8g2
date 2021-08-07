@@ -587,7 +587,7 @@ static void show_result(const char *s, uint16_t fps) {
 }
 
 #define THREAD_PRIORITY         25
-#define THREAD_STACK_SIZE       512
+#define THREAD_STACK_SIZE       1024
 #define THREAD_TIMESLICE        5
 
 static rt_thread_t tid1 = RT_NULL;
@@ -621,7 +621,6 @@ static void u8g2_page_buffer_fps(int argc,char *argv[])
                           THREAD_STACK_SIZE,
                           THREAD_PRIORITY, THREAD_TIMESLICE);
 
-  /* 如果获得线程控制块，启动这个线程 */
   if (tid1 != RT_NULL)
     rt_thread_startup(tid1);
 }

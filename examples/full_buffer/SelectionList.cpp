@@ -52,11 +52,19 @@
 #define U8G2_PIN_SELECT                     21      // PB5
 #define U8G2_PIN_HOME                       17      // PB1
 
-#define OLED_I2C_PIN_SCL                    22      // PB6
-#define OLED_I2C_PIN_SDA                    23      // PB7
+#define OLED_SPI_PIN_CLK                    5  // PA5
+#define OLED_SPI_PIN_MOSI                   7  // PA7
+#define OLED_SPI_PIN_RES                    2  // PA2
+#define OLED_SPI_PIN_DC                     1  // PA1
+#define OLED_SPI_PIN_CS                     0  // PA0
 
-static U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ OLED_I2C_PIN_SCL, /* data=*/ OLED_I2C_PIN_SDA, /* reset=*/ U8X8_PIN_NONE);   // All Boards without Reset of the Display
-
+// Check https://github.com/olikraus/u8g2/wiki/u8g2setupcpp for all supported devices
+static U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0,\
+                                            /* clock=*/ OLED_SPI_PIN_CLK,\
+                                            /* data=*/ OLED_SPI_PIN_MOSI,\
+                                            /* cs=*/ OLED_SPI_PIN_CS,\
+                                            /* dc=*/ OLED_SPI_PIN_DC,\
+                                            /* reset=*/ OLED_SPI_PIN_RES);
 
 // Please UNCOMMENT one of the contructor lines below
 // U8g2 Contructor List (Frame Buffer)
@@ -259,7 +267,7 @@ const char *string_list =
 static uint8_t current_selection = 0;
 
 #define THREAD_PRIORITY         25
-#define THREAD_STACK_SIZE       512
+#define THREAD_STACK_SIZE       1024
 #define THREAD_TIMESLICE        5
 
 static rt_thread_t tid1 = RT_NULL;
@@ -299,7 +307,6 @@ static void u8g2_full_buffer_selection_list(int argc,char *argv[])
                             THREAD_STACK_SIZE,
                             THREAD_PRIORITY, THREAD_TIMESLICE);
 
-    /* 如果获得线程控制块，启动这个线程 */
     if (tid1 != RT_NULL)
       rt_thread_startup(tid1);
 }

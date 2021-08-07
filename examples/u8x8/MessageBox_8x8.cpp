@@ -36,7 +36,7 @@
 */
 
 #include <rtthread.h>
-#include <u8g2_port.h>
+#include <U8x8lib.h>
 
 
 // You may reference Drivers/drv_gpio.c for pinout
@@ -210,7 +210,7 @@ static U8X8_SSD1306_128X64_NONAME_SW_I2C u8x8(/* clock=*/ OLED_I2C_PIN_SCL, /* d
 // End of constructor list
 
 #define THREAD_PRIORITY         25
-#define THREAD_STACK_SIZE       512
+#define THREAD_STACK_SIZE       1024
 #define THREAD_TIMESLICE        5
 
 static rt_thread_t tid1 = RT_NULL;
@@ -243,7 +243,6 @@ tid1 = rt_thread_create("tu8g23",
                           THREAD_STACK_SIZE,
                           THREAD_PRIORITY, THREAD_TIMESLICE);
 
-  /* 如果获得线程控制块，启动这个线程 */
   if (tid1 != RT_NULL)
     rt_thread_startup(tid1);
 }

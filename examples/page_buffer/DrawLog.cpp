@@ -252,7 +252,7 @@ U8G2LOG u8g2log;
 static unsigned long t = 0;
 
 #define THREAD_PRIORITY         25
-#define THREAD_STACK_SIZE       512
+#define THREAD_STACK_SIZE       1024
 #define THREAD_TIMESLICE        5
 
 static rt_thread_t tid1 = RT_NULL;
@@ -294,7 +294,6 @@ static void u8g2_page_buffer_draw_log(int argc,char *argv[])
                           THREAD_STACK_SIZE,
                           THREAD_PRIORITY, THREAD_TIMESLICE);
 
-  /* 如果获得线程控制块，启动这个线程 */
   if (tid1 != RT_NULL)
     rt_thread_startup(tid1);
 }
