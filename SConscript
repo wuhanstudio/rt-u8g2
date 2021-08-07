@@ -140,7 +140,7 @@ else:
 	if GetDepend('U8G2_USING_PAGE_EXAMPLE_SCROLLING_TEXT'):
 		src    += Glob('examples/page_buffer/ScrollingText.cpp')
 
-	if GetDepend('U8G2_USING_PAGE_EXAMPLE_SCROLLING_LIST'):
+	if GetDepend('U8G2_USING_PAGE_EXAMPLE_SELECTION_LIST'):
 		src    += Glob('examples/page_buffer/SelectionList_pb.cpp')
 
 	if GetDepend('U8G2_USING_PAGE_EXAMPLE_SERIAL'):
