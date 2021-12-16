@@ -1,7 +1,10 @@
+<img src="u8g2_logo.png" style="float: left;" >
+
 > 这个仓库是我以前移植 u8g2 到 RT-Thread 的版本，现在对应的移植已经 upstream 到 u8g2 的官方仓库了，所以可以直接用官方仓库了。 - 2021.09.30
 
-![u8g2 logo](u8g2_logo.png)
 # rt-u8g2
+
+![](docs/u8g2.jpg)
 
 ## 0、介绍
 
