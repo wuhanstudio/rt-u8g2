@@ -408,10 +408,6 @@ uint8_t u8g2_Setup_st7567_jlx12864g_6053_pn(u8x8_t *u8x8, uint8_t msg, uint8_t a
         u8x8_cad_SendSequence(u8x8, u8x8_st7567_jlx12864g_6053_pn_init_seq);
         break;
     case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
-        if (arg_int == 0)
-            u8x8_cad_SendSequence(u8x8, u8x8_d_st7567_132x64_powersave0_seq);
-        else
-            u8x8_cad_SendSequence(u8x8, u8x8_d_st7567_132x64_powersave1_seq);
         break;
     case U8X8_MSG_DISPLAY_SET_FLIP_MODE:
         if (arg_int == 0)
