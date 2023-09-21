@@ -293,6 +293,29 @@ static const uint8_t u8x8_st7567_jlx12864_init_seq[] = {
   U8X8_END()             			/* end of sequence */
 };
 
+static const uint8_t u8x8_st7567_jlx12864g_6053_pn_init_seq[] = {
+
+    U8X8_START_TRANSFER(), /* enable chip, delay is part of the transfer start */
+    U8X8_C(0xe2),
+    U8X8_DLY(50),
+    U8X8_C(0x2c),
+    U8X8_DLY(50),
+    U8X8_C(0x2e),
+    U8X8_DLY(50),
+    U8X8_C(0x2f),
+    U8X8_DLY(50),
+    U8X8_C(0x24),
+    U8X8_C(0x81),
+    U8X8_C(0x25),
+    U8X8_C(0xa0),
+    U8X8_C(0xc8),
+    U8X8_C(0xa0),
+    U8X8_C(0x40),
+    U8X8_C(0xaf),
+    U8X8_END_TRANSFER(), /* disable chip */
+    U8X8_END()           /* end of sequence */
+};
+
 /* JLX12864 display */
 uint8_t u8x8_d_st7567_jlx12864(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
@@ -370,10 +393,80 @@ uint8_t u8x8_d_st7567_jlx12864(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
   return 1;
 }
 
+/* JLX12864g_6053_pn display */
+uint8_t u8g2_Setup_st7567_jlx12864g_6053_pn(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
+{
+    uint8_t x, c;
+    uint8_t *ptr;
+    switch (msg)
+    {
+    case U8X8_MSG_DISPLAY_SETUP_MEMORY:
+        u8x8_d_helper_display_setup_memory(u8x8, &u8x8_st7567_jlx12864_display_info);
+        break;
+    case U8X8_MSG_DISPLAY_INIT:
+        u8x8_d_helper_display_init(u8x8);
+        u8x8_cad_SendSequence(u8x8, u8x8_st7567_jlx12864g_6053_pn_init_seq);
+        break;
+    case U8X8_MSG_DISPLAY_SET_POWER_SAVE:
+        break;
+    case U8X8_MSG_DISPLAY_SET_FLIP_MODE:
+        if (arg_int == 0)
+        {
+            u8x8_cad_SendSequence(u8x8, u8x8_d_st7567_132x64_flip0_seq);
+            u8x8->x_offset = u8x8->display_info->default_x_offset;
+        }
+        else
+        {
+            u8x8_cad_SendSequence(u8x8, u8x8_d_st7567_132x64_flip1_seq);
+            u8x8->x_offset = u8x8->display_info->flipmode_x_offset;
+        }
+        break;
+#ifdef U8X8_WITH_SET_CONTRAST
+    case U8X8_MSG_DISPLAY_SET_CONTRAST:
+        u8x8_cad_StartTransfer(u8x8);
+        u8x8_cad_SendCmd(u8x8, 0x081);
+        u8x8_cad_SendArg(u8x8, arg_int >> 2); /* st7567 has range from 0 to 63 */
+        u8x8_cad_EndTransfer(u8x8);
+        break;
+#endif
+    case U8X8_MSG_DISPLAY_DRAW_TILE:
+        u8x8_cad_StartTransfer(u8x8);
+
+        x = ((u8x8_tile_t *)arg_ptr)->x_pos;
+        x *= 8;
+        x += u8x8->x_offset;
+        u8x8_cad_SendCmd(u8x8, 0x010 | (x >> 4));
+        u8x8_cad_SendCmd(u8x8, 0x000 | ((x & 15)));
+        u8x8_cad_SendCmd(u8x8, 0x0b0 | (((u8x8_tile_t *)arg_ptr)->y_pos));
+
+        c = ((u8x8_tile_t *)arg_ptr)->cnt;
+        c *= 8;
+        ptr = ((u8x8_tile_t *)arg_ptr)->tile_ptr;
+        /*
+      The following if condition checks the hardware limits of the st7567
+      controller: It is not allowed to write beyond the display limits.
+      This is in fact an issue within flip mode.
+        */
+        if (c + x > 132u)
+        {
+            c = 132u;
+            c -= x;
+        }
+        do
+        {
+            u8x8_cad_SendData(u8x8, c, ptr); /* note: SendData can not handle more than 255 bytes */
+            arg_int--;
+        } while (arg_int > 0);
+
+        u8x8_cad_EndTransfer(u8x8);
+        break;
+    default:
+        return 0;
+    }
+    return 1;
+}
 
 /*=====================================================*/
-
-
 
 static const u8x8_display_info_t u8x8_st7567_enh_dg128064_display_info =
 {
